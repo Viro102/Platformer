@@ -1,10 +1,12 @@
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class GamePanel implements ActionListener {
 
     private Player player;
+    private ArrayList<Wall> walls = new ArrayList<>();
     // private Timer gameTimer;
 
     public GamePanel() {
@@ -22,6 +24,9 @@ public class GamePanel implements ActionListener {
         Graphics2D gtd = (Graphics2D) g;
 
         player.draw(gtd);
+        for (Wall wall : walls) {
+            wall.draw(gtd);
+        }
 
     }
 
@@ -62,6 +67,21 @@ public class GamePanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+
+    }
+
+    public void makeWalls() {
+        for (int i = 50; i < 650; i += 50) {
+            walls.add(new Wall(i, 600, 50, 50));
+
+        }
+        walls.add(new Wall(50, 450, 50, 50));
+        walls.add(new Wall(50, 500, 50, 50));
+        walls.add(new Wall(50, 550, 50, 50));
+        walls.add(new Wall(450, 550, 50, 50));
+        walls.add(new Wall(600, 450, 50, 50));
+        walls.add(new Wall(600, 500, 50, 50));
+        walls.add(new Wall(600, 550, 50, 50));
 
     }
 }
