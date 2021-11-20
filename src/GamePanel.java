@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class GamePanel implements ActionListener {
 
     private Player player;
-    private ArrayList<Wall> walls = new ArrayList<>();
+    ArrayList<Wall> walls = new ArrayList<>();
     // private Timer gameTimer;
 
     public GamePanel() {

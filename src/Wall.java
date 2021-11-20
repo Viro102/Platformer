@@ -6,7 +6,7 @@ public class Wall {
     private int width;
     private int height;
 
-    private Rectangle hitBox;
+    Rectangle hitBox;
 
     public Wall(int x, int y, int width, int height) {
         this.x = x;

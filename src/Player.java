@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+import javax.xml.xpath.XPath;
+
 public class Player {
 
     private GamePanel panel;
@@ -58,18 +60,48 @@ public class Player {
         }
 
         if (this.keyUp) {
-            // kontrolujem ci sa hrac dotyka zeme
-            ySpeed = -6;
+            hitBox.y++;
+            for (Wall wall : panel.walls) {
+                if (wall.hitBox.intersects(hitBox)) // ak je hrac na zemi moze vyskocit
+                    ySpeed = -6;
+            }
+            hitBox.y--; // musim odcitat aby hitbox ostal nezmeneny
         }
 
-        ySpeed += 0.3;
+        ySpeed += 0.3; // gravitacia
+
+        // horizotalna kolizia
+        hitBox.x += xSpeed;
+        for (Wall wall : panel.walls) {
+            if (hitBox.intersects(wall.hitBox)) {
+                hitBox.x -= xSpeed;
+                while (!wall.hitBox.intersects(hitBox)) { // toto je kontrola len hitboxu, hrac stale je inde
+                    hitBox.x += Math.signum(xSpeed); // signum preto lebo chceme aby kolizie fungovali na obidve strany
+                    hitBox.x -= Math.signum(xSpeed);
+                    xSpeed = 0;
+                    x = hitBox.x;
+                }
+            }
+        }
+
+        // vertikalna kolizia
+        hitBox.y += ySpeed;
+        for (Wall wall : panel.walls) {
+            if (hitBox.intersects(wall.hitBox)) {
+                hitBox.y -= ySpeed;
+                while (!wall.hitBox.intersects(hitBox)) {
+                    hitBox.y += Math.signum(ySpeed);
+                    hitBox.y -= Math.signum(ySpeed);
+                    ySpeed = 0;
+                    y = hitBox.y;
+                }
+            }
+        }
 
         this.x += xSpeed;
         this.y += ySpeed;
 
-        // vzdy ked pohnem hraca hitbox sa posunie s nim aby som mohol kontrolovat
-        // kolizie
-        this.hitBox.x = x;
+        this.hitBox.x = x; // vzdy ked pohnem hraca hitbox sa posunie s nim kvoli koliziam
         this.hitBox.y = y;
 
     }
