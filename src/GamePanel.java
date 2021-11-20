@@ -2,10 +2,10 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.*;
 
-public class GamePanel {
+public class GamePanel implements ActionListener {
 
     private Player player;
-    private Timer gameTimer;
+    // private Timer gameTimer;
 
     public GamePanel() {
         JPanel panel = new JPanel(); // na vykreslovanie pouzivam JPanel lebo nema flickering ako JFrame
@@ -17,7 +17,7 @@ public class GamePanel {
     }
 
     public void paint(Graphics g) {
-        super.paint(g);
+        // super.paint(g);
 
         Graphics2D gtd = (Graphics2D) g;
 

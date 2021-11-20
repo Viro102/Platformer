@@ -40,6 +40,30 @@ public class Player {
             this.xSpeed++;
         }
 
+        // osetrenie pohybu, nastavenie max rychlosti...
+        if (xSpeed > 0 && xSpeed < 0.75) {
+            xSpeed = 0;
+        }
+
+        if (xSpeed < 0 && xSpeed > -0.75) {
+            xSpeed = 0;
+        }
+
+        if (xSpeed > 7) {
+            xSpeed = 7;
+        }
+
+        if (xSpeed < -7) {
+            xSpeed = -7;
+        }
+
+        if (this.keyUp) {
+            // kontrolujem ci sa hrac dotyka zeme
+            ySpeed = -6;
+        }
+
+        ySpeed += 0.3;
+
         this.x += xSpeed;
         this.y += ySpeed;
 
