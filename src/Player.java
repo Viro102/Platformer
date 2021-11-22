@@ -2,8 +2,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import javax.xml.xpath.XPath;
-
 public class Player {
 
     private GamePanel panel;
