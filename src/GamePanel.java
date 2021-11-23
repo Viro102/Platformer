@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class GamePanel implements ActionListener {
+public class GamePanel {
 
     private Player player;
     ArrayList<Wall> walls = new ArrayList<>();
@@ -63,11 +63,6 @@ public class GamePanel implements ActionListener {
             player.keyDown = false;
             break;
         }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-
     }
 
     public void makeWalls() {

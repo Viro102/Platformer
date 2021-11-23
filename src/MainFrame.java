@@ -5,7 +5,7 @@ public class MainFrame {
 
     public MainFrame() {
         JFrame frame = new JFrame();
-        frame.setSize(800, 800);
+        frame.setSize(900, 600);
         frame.setResizable(false);
         frame.setTitle("Moja prva hra");
         frame.setVisible(true);
