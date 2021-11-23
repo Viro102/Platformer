@@ -10,7 +10,7 @@ public class GamePanel implements ActionListener {
     // private Timer gameTimer;
 
     public GamePanel() {
-        JPanel panel = new JPanel(); // na vykreslovanie pouzivam JPanel lebo nema flickering ako JFrame
+        JPanel panel = new JPanel();
         panel.setLocation(0, 0);
         panel.setBackground(Color.LIGHT_GRAY);
         panel.setVisible(true);

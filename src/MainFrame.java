@@ -13,7 +13,7 @@ public class MainFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // program skonci ak zatvorim okno
 
         // panel
-        panel.setSize(this.getSize());
-        this.add(panel);
+        // panel.setSize(this.getSize());
+        // this.add(panel);
     }
 }
