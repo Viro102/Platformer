@@ -68,7 +68,7 @@ public class Player {
 
         ySpeed += 0.3; // gravitacia
 
-        // horizotalna kolizia
+        // horizontalna kolizia
         hitBox.x += xSpeed;
         for (Wall wall : panel.walls) {
             if (hitBox.intersects(wall.hitBox)) {
