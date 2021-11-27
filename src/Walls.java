@@ -20,8 +20,7 @@ public class Walls {
             for(int i = 0; i < 5; i++) walls.add(new Wall(Color.GREEN, offset + 450 + i * 50, 600, s, s));
             walls.add(new Wall(Color.GREEN, offset + 150, 550, s, s));
             walls.add(new Wall(Color.GREEN, offset + 200, 550, s, s));
-        
-                walls.add(new Wall(Color.GREEN, offset + 200, 500, s, s));
+            walls.add(new Wall(Color.GREEN, offset + 200, 500, s, s));
             walls.add(new Wall(Color.GREEN, offset + 200, 500, s, s));
             walls.add(new Wall(Color.GREEN, offset + 500, 550, s, s));
             walls.add(new Wall(Color.GREEN, offset + 450, 550, s, s));
