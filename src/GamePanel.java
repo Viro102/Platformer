@@ -21,7 +21,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.black);
+        this.setBackground(Color.white);
         this.setDoubleBuffered(true); // lepsi render
     }
 
@@ -79,7 +79,7 @@ public class GamePanel extends JPanel implements Runnable {
         // farbou, transformaciou...
         Graphics2D g2 = (Graphics2D) g;
 
-        g2.setColor(Color.white);
+        g2.setColor(Color.black);
         g2.fillRect(16, 16, 100, 100);
 
         g2.dispose();
