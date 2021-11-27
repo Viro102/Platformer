@@ -1,4 +1,6 @@
-## My first 2D game in Java
+## My first 2D game in Java |WIP|
 
 So this is my university project, I am a total beginner so this is nothing more than just sea
-of bugs :D
+of bugs :D.
+
+## THIS IS UNFINISHED
