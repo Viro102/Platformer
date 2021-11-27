@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
-    // Toto je hlavny game loop
+    // Toto je hlavny game loop pouzivam delta sposob vykreslovania
     @Override
     public void run() {
         double drawInterval = 1000000000 / FPS;
@@ -46,14 +46,14 @@ public class GamePanel extends JPanel implements Runnable {
             currentTime = System.nanoTime();
 
             delta += (currentTime - lastTime) / drawInterval;
-            timer += (currentTime - lastTime);
+            timer += (currentTime - lastTime); // timer pouzivam na FPS zobrazenie
             lastTime = currentTime;
 
             if (delta > 1) {
                 update();
                 repaint();
                 delta--;
-                drawCount++;
+                drawCount++; // pocet snimkov za sekundu
             }
 
             if (timer >= 1000000000) {
@@ -62,7 +62,7 @@ public class GamePanel extends JPanel implements Runnable {
                 timer = 0;
             }
 
-            System.out.println("the game has been running for: " + currentTime + " sec");
+            // System.out.println("the game has been running for: " + currentTime + " sec");
         }
     }
 
