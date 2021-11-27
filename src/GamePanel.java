@@ -7,7 +7,6 @@ public class GamePanel {
 
     private Player player;
     ArrayList<Wall> walls = new ArrayList<>();
-    // private Timer gameTimer;
 
     public GamePanel() {
         JPanel panel = new JPanel();
@@ -32,36 +31,36 @@ public class GamePanel {
 
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyChar()) {
-        case 'a':
-            player.keyLeft = true;
-            break;
-        case 'd':
-            player.keyRight = true;
-            break;
-        case 'w':
-            player.keyUp = true;
-            break;
-        case 's':
-            player.keyDown = true;
-            break;
+            case 'a':
+                player.keyLeft = true;
+                break;
+            case 'd':
+                player.keyRight = true;
+                break;
+            case 'w':
+                player.keyUp = true;
+                break;
+            case 's':
+                player.keyDown = true;
+                break;
         }
 
     }
 
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyChar()) {
-        case 'a':
-            player.keyLeft = false;
-            break;
-        case 'd':
-            player.keyRight = false;
-            break;
-        case 'w':
-            player.keyUp = false;
-            break;
-        case 's':
-            player.keyDown = false;
-            break;
+            case 'a':
+                player.keyLeft = false;
+                break;
+            case 'd':
+                player.keyRight = false;
+                break;
+            case 'w':
+                player.keyUp = false;
+                break;
+            case 's':
+                player.keyDown = false;
+                break;
         }
     }
 
