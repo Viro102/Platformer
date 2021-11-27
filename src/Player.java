@@ -59,7 +59,7 @@ public class Player {
 
         if (this.keyUp) {
             hitBox.y++;
-            for (Wall wall : panel.walls) {
+            for (Wall wall : panel.getWalls()) {
                 if (wall.hitBox.intersects(hitBox)) // ak je hrac na zemi moze vyskocit
                     ySpeed = -6;
             }
@@ -70,7 +70,7 @@ public class Player {
 
         // horizontalna kolizia
         hitBox.x += xSpeed;
-        for (Wall wall : panel.walls) {
+        for (Wall wall : panel.getWalls()) {
             if (hitBox.intersects(wall.hitBox)) {
                 hitBox.x -= xSpeed;
                 while (!wall.hitBox.intersects(hitBox)) { // toto je kontrola len hitboxu, hrac stale je inde
@@ -84,7 +84,7 @@ public class Player {
 
         // vertikalna kolizia
         hitBox.y += ySpeed;
-        for (Wall wall : panel.walls) {
+        for (Wall wall : panel.getWalls()) {
             if (hitBox.intersects(wall.hitBox)) {
                 hitBox.y -= ySpeed;
                 while (!wall.hitBox.intersects(hitBox)) {

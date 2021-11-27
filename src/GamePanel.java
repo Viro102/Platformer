@@ -3,16 +3,18 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class GamePanel {
+public class GamePanel extends JPanel {
 
     private Player player;
-    ArrayList<Wall> walls = new ArrayList<>();
+
+    private ArrayList<Wall> walls = new ArrayList<>();
 
     public GamePanel() {
         JPanel panel = new JPanel();
         panel.setLocation(0, 0);
-        panel.setBackground(Color.LIGHT_GRAY);
+        panel.setBackground(Color.black);
         panel.setVisible(true);
+        panel.setDoubleBuffered(true); // lepsi render
 
         this.player = new Player(400, 300, this);
     }
@@ -77,5 +79,9 @@ public class GamePanel {
         walls.add(new Wall(600, 500, 50, 50));
         walls.add(new Wall(600, 550, 50, 50));
 
+    }
+
+    public ArrayList<Wall> getWalls() {
+        return this.walls;
     }
 }
