@@ -6,12 +6,11 @@ _+new MainFrame(): MainFrame_
 _+new MainFrame(): GamePanel_</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>763</x><y>360</y><w>210</w><h>190</h></coordinates><panel_attributes>GamePanel
 --
 
---
-_+ new JPanel(): GamePanel_</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>223</x><y>370</y><w>210</w><h>190</h></coordinates><panel_attributes>MainFrame
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>223</x><y>370</y><w>210</w><h>190</h></coordinates><panel_attributes>MainFrame
 --
 
 --
-_+new JFrame(): MainFrame_</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>323</x><y>240</y><w>180</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>160;10;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>683</x><y>240</y><w>210</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;190;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>765</x><y>560</y><w>210</w><h>190</h></coordinates><panel_attributes>MainMenu
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>323</x><y>240</y><w>180</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>160;10;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>683</x><y>240</y><w>210</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;190;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>765</x><y>560</y><w>210</w><h>190</h></coordinates><panel_attributes>MainMenu
 --
 
 --
