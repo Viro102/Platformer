@@ -3,12 +3,12 @@ import java.awt.event.*;
 
 public class KeyChecker {
 
-    Action upAction;
-    Action downAction;
-    Action leftAction;
-    Action rightAction;
+    private Action upAction;
+    private Action downAction;
+    private Action leftAction;
+    private Action rightAction;
 
-    JLabel player;
+    private Player player;
 
     public KeyChecker() {
         upAction = new UpAction();
@@ -33,6 +33,7 @@ public class KeyChecker {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            player.setKey('w');
             player.jump();
 
         }
@@ -43,6 +44,7 @@ public class KeyChecker {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            player.setKey('s');
             player.crouch();
 
         }
@@ -53,6 +55,7 @@ public class KeyChecker {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            player.setKey('a');
             player.goLeft();
 
         }
@@ -63,6 +66,7 @@ public class KeyChecker {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            player.setKey('d');
             player.goRight();
 
         }

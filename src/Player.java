@@ -2,7 +2,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-public class Player {
+import javax.swing.JLabel;
+
+public class Player extends JLabel {
 
     private GamePanel panel;
 
@@ -21,10 +23,14 @@ public class Player {
     public boolean keyUp;
     public boolean keyDown;
 
+    private JLabel player;
+
     public Player(int x, int y, GamePanel panel) {
         this.panel = panel;
         this.x = x;
         this.y = y;
+
+        this.player = new JLabel("Hrac");
 
         this.width = 50;
         this.height = 100;
@@ -107,5 +113,49 @@ public class Player {
     public void draw(Graphics2D gtd) {
         gtd.setColor(Color.BLACK);
         gtd.fillRect(x, y, width, height);
+    }
+
+    public void jump() {
+    }
+
+    public void crouch() {
+    }
+
+    public void goLeft() {
+    }
+
+    public void goRight() {
+        this.x += xSpeed;
+    }
+
+    public void setKey(char n) {
+        switch (n) {
+            case 'w': {
+                keyUp = true;
+                break;
+            }
+
+            case 's': {
+                keyDown = true;
+                break;
+            }
+
+            case 'a': {
+                keyLeft = true;
+                break;
+            }
+
+            case 'd': {
+                keyRight = true;
+                break;
+            }
+
+            default: {
+                keyUp = false;
+                keyDown = false;
+                keyLeft = false;
+                keyRight = false;
+            }
+        }
     }
 }

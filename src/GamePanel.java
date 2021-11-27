@@ -79,9 +79,6 @@ public class GamePanel extends JPanel implements Runnable {
         // farbou, transformaciou...
         Graphics2D g2 = (Graphics2D) g;
 
-        g2.setColor(Color.black);
-        g2.fillRect(16, 16, 100, 100);
-
         g2.dispose();
 
     }
