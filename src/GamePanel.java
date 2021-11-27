@@ -1,13 +1,14 @@
 import javax.swing.JPanel;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements Runnable {
 
     private Player player;
 
     private ArrayList<Wall> walls = new ArrayList<>();
+
+    private Thread gameThread;
 
     public GamePanel() {
         JPanel panel = new JPanel();
@@ -17,6 +18,45 @@ public class GamePanel extends JPanel {
         panel.setDoubleBuffered(true); // lepsi render
 
         this.player = new Player(400, 300, this);
+    }
+
+    public void startGameThread() {
+        gameThread = new Thread(this);
+        gameThread.start();
+
+    }
+
+    // Toto je hlavny game loop
+    @Override
+    public void run() {
+        while (gameThread != null) {
+
+            System.out.println("the game is running");
+
+            update();
+
+            repaint();
+        }
+    }
+
+    // 1. aktualizuje hracovu poziciu
+    public void update() {
+
+    }
+
+    // 2. vykresluje prostredie (renderuje)
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        // menim Graphics na Graphics2D aby som mal vacsiu kontorlu na geometriou,
+        // farbou, transformaciou...
+        Graphics2D g2 = (Graphics2D) g;
+
+        g2.setColor(Color.white);
+        g2.fillRect(16, 16, 100, 100);
+
+        g2.dispose();
+
     }
 
     public void paint(Graphics g) {
@@ -29,41 +69,6 @@ public class GamePanel extends JPanel {
             wall.draw(gtd);
         }
 
-    }
-
-    public void keyPressed(KeyEvent e) {
-        switch (e.getKeyChar()) {
-            case 'a':
-                player.keyLeft = true;
-                break;
-            case 'd':
-                player.keyRight = true;
-                break;
-            case 'w':
-                player.keyUp = true;
-                break;
-            case 's':
-                player.keyDown = true;
-                break;
-        }
-
-    }
-
-    public void keyReleased(KeyEvent e) {
-        switch (e.getKeyChar()) {
-            case 'a':
-                player.keyLeft = false;
-                break;
-            case 'd':
-                player.keyRight = false;
-                break;
-            case 'w':
-                player.keyUp = false;
-                break;
-            case 's':
-                player.keyDown = false;
-                break;
-        }
     }
 
     public void makeWalls() {

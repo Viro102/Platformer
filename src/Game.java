@@ -5,5 +5,7 @@ public class Game {
 
         frame.add(gamePanel);
 
+        gamePanel.startGameThread();
+
     }
 }
