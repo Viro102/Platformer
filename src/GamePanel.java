@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 public class GamePanel extends JPanel implements Runnable {
 
-    private final int originalTileSize = 16; // 16x16 dlazdica
-    private final int scale = 3;
-
-    private final int tileSize = originalTileSize * scale; // 48x48 dlazdica
+    private final int tileSize = 48; // 48x48 dlazdica
     private final int maxScreenCol = 16;
     private final int maxScreenRow = 12;
     private final int screenWidth = tileSize * maxScreenCol; // 768 pixels
@@ -72,6 +69,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     // 1. aktualizuje hracovu poziciu
     public void update() {
+        player.setMovementRules();
+
         if (player.jump()) {
         }
         if (player.crouch()) {
@@ -110,7 +109,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void makeWalls() {
-        for (int i = 48; i < 480; i += 48) {
+        for (int i = 0; i < 960; i += 48) {
             walls.add(new Wall(i, 240, 48, 48));
 
         }
