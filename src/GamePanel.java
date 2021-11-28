@@ -100,15 +100,18 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
-    // public void reset() {
-    // player.x = 200;
-    // player.y = 150;
+    public void reset() {
+        this.x = 48;
+        this.y = 96;
+        this.xSpeed = 0;
+        this.ySpeed = 0;
+        this.walls.clear();
 
-    // }
+    }
 
     public void makeWalls() {
-        for (int i = 50; i < 650; i += 50) {
-            walls.add(new Wall(i, 300, 50, 50));
+        for (int i = 48; i < 480; i += 48) {
+            walls.add(new Wall(i, 240, 48, 48));
 
         }
     }

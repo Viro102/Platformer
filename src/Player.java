@@ -26,7 +26,7 @@ public class Player extends JLabel {
 
         this.width = 48;
         this.height = 96;
-        this.hitBox = new Rectangle(x, y, width, height);
+        this.hitBox = new Rectangle(this.x, this.y, this.width, this.height);
         this.kChecker = new KeyChecker(this);
     }
 
@@ -88,7 +88,7 @@ public class Player extends JLabel {
 
     public void draw(Graphics2D g) {
         g.setColor(Color.BLACK);
-        g.fillRect(x, y, width, height);
+        g.fillRect(this.x, this.y, this.width, this.height);
     }
 
     public boolean jump() {
@@ -103,11 +103,10 @@ public class Player extends JLabel {
         this.y += ySpeed;
         this.hitBox.y = y; // vzdy ked pohnem hraca hitbox sa posunie s nim kvoli koliziam
         return true;
-
     }
 
     public boolean crouch() {
-        return false;
+        return true;
     }
 
     public boolean goLeft() {
