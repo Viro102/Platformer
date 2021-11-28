@@ -10,31 +10,34 @@ public class KeyChecker {
 
     private Player player;
 
-    public KeyChecker() {
-        upAction = new UpAction();
-        downAction = new DownAction();
-        leftAction = new LeftAction();
-        rightAction = new RightAction();
+    public KeyChecker(Player player) {
 
-        player.getInputMap().put(KeyStroke.getKeyStroke('w'), "upAction");
-        player.getActionMap().put("upAction", upAction);
+        this.player = player;
 
-        player.getInputMap().put(KeyStroke.getKeyStroke('s'), "downAction");
-        player.getActionMap().put("downAction", downAction);
+        this.upAction = new UpAction();
+        this.downAction = new DownAction();
+        this.leftAction = new LeftAction();
+        this.rightAction = new RightAction();
 
-        player.getInputMap().put(KeyStroke.getKeyStroke('a'), "leftAction");
-        player.getActionMap().put("leftAction", leftAction);
+        this.player.getInputMap().put(KeyStroke.getKeyStroke('w'), "upAction");
+        this.player.getActionMap().put("upAction", upAction);
 
-        player.getInputMap().put(KeyStroke.getKeyStroke('d'), "rightAction");
-        player.getActionMap().put("rightAction", rightAction);
+        this.player.getInputMap().put(KeyStroke.getKeyStroke('s'), "downAction");
+        this.player.getActionMap().put("downAction", downAction);
+
+        this.player.getInputMap().put(KeyStroke.getKeyStroke('a'), "leftAction");
+        this.player.getActionMap().put("leftAction", leftAction);
+
+        this.player.getInputMap().put(KeyStroke.getKeyStroke('d'), "rightAction");
+        this.player.getActionMap().put("rightAction", rightAction);
     }
 
     public class UpAction extends AbstractAction {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            player.setKey('w');
             player.jump();
+            System.out.println("moving up");
 
         }
 
@@ -44,8 +47,8 @@ public class KeyChecker {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            player.setKey('s');
             player.crouch();
+            System.out.println("moving down");
 
         }
 
@@ -55,8 +58,8 @@ public class KeyChecker {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            player.setKey('a');
             player.goLeft();
+            System.out.println("moving left");
 
         }
 
@@ -66,8 +69,8 @@ public class KeyChecker {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            player.setKey('d');
             player.goRight();
+            System.out.println("moving right");
 
         }
 

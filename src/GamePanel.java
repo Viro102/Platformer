@@ -17,12 +17,16 @@ public class GamePanel extends JPanel implements Runnable {
 
     private Thread gameThread;
 
+    private Player player;
+
     private int FPS = 60;
 
     public GamePanel() {
+        this.player = new Player(48, 96, this);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.white);
         this.setDoubleBuffered(true); // lepsi render
+        this.add(this.player);
     }
 
     public void startGameThread() {
@@ -68,7 +72,16 @@ public class GamePanel extends JPanel implements Runnable {
 
     // 1. aktualizuje hracovu poziciu
     public void update() {
-
+        if (player.jump()) {
+        }
+        if (player.crouch()) {
+        }
+        if (player.goLeft()) {
+        }
+        if (player.goRight()) {
+        } else {
+            System.out.println("nepodarilo sa");
+        }
     }
 
     // 2. vykresluje prostredie (renderuje)
@@ -78,27 +91,33 @@ public class GamePanel extends JPanel implements Runnable {
         // menim Graphics na Graphics2D aby som mal vacsiu kontorlu na geometriou,
         // farbou, transformaciou...
         Graphics2D g2 = (Graphics2D) g;
+        player.draw(g2);
+        for (Wall walls : walls) {
+            walls.draw(g2);
+        }
 
         g2.dispose();
 
     }
 
+    // public void reset() {
+    // player.x = 200;
+    // player.y = 150;
+
+    // }
+
     public void makeWalls() {
         for (int i = 50; i < 650; i += 50) {
-            walls.add(new Wall(i, 600, 50, 50));
+            walls.add(new Wall(i, 300, 50, 50));
 
         }
-        walls.add(new Wall(50, 450, 50, 50));
-        walls.add(new Wall(50, 500, 50, 50));
-        walls.add(new Wall(50, 550, 50, 50));
-        walls.add(new Wall(450, 550, 50, 50));
-        walls.add(new Wall(600, 450, 50, 50));
-        walls.add(new Wall(600, 500, 50, 50));
-        walls.add(new Wall(600, 550, 50, 50));
-
     }
 
     public ArrayList<Wall> getWalls() {
         return this.walls;
+    }
+
+    public Player getPlayer() {
+        return this.player;
     }
 }

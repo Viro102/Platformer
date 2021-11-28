@@ -18,11 +18,11 @@ public class Wall {
 
     }
 
-    public void draw(Graphics2D gtd) {
-        gtd.setColor(Color.BLACK);
-        gtd.drawRect(x, y, width, height);
-        gtd.setColor(Color.WHITE);
-        gtd.fillRect(x + 1, y + 1, width - 2, height - 2);
+    public void draw(Graphics2D g) {
+        g.setColor(Color.BLACK);
+        g.drawRect(x, y, width, height);
+        g.setColor(Color.WHITE);
+        g.fillRect(x + 1, y + 1, width - 2, height - 2);
 
     }
 }

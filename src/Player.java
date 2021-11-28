@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-
 import javax.swing.JLabel;
 
 public class Player extends JLabel {
@@ -18,36 +17,28 @@ public class Player extends JLabel {
 
     private Rectangle hitBox;
 
-    public boolean keyRight;
-    public boolean keyLeft;
-    public boolean keyUp;
-    public boolean keyDown;
-
-    private JLabel player;
+    private KeyChecker kChecker;
 
     public Player(int x, int y, GamePanel panel) {
         this.panel = panel;
         this.x = x;
         this.y = y;
 
-        this.player = new JLabel("Hrac");
-
-        this.width = 50;
-        this.height = 100;
+        this.width = 48;
+        this.height = 96;
         this.hitBox = new Rectangle(x, y, width, height);
+        this.kChecker = new KeyChecker(this);
     }
 
-    public void set() {
-        if (this.keyRight && this.keyLeft || !this.keyLeft && !this.keyRight) {
-            this.xSpeed *= 0.8;
-        } else if (this.keyLeft && !this.keyRight) {
-            this.xSpeed--;
-        } else if (!this.keyLeft && this.keyRight) {
-            this.xSpeed++;
-        }
+    public void setMovementRules() {
+        // if (this.keyRight && this.keyLeft || !this.keyLeft && !this.keyRight) {
+        // this.xSpeed *= 0.8;
+        // }
 
         // osetrenie pohybu, nastavenie max rychlosti...
-        if (xSpeed > 0 && xSpeed < 0.75) {
+        if (xSpeed > 0 && xSpeed < 0.75)
+
+        {
             xSpeed = 0;
         }
 
@@ -61,15 +52,6 @@ public class Player extends JLabel {
 
         if (xSpeed < -7) {
             xSpeed = -7;
-        }
-
-        if (this.keyUp) {
-            hitBox.y++;
-            for (Wall wall : panel.getWalls()) {
-                if (wall.hitBox.intersects(hitBox)) // ak je hrac na zemi moze vyskocit
-                    ySpeed = -6;
-            }
-            hitBox.y--; // musim odcitat aby hitbox ostal nezmeneny
         }
 
         ySpeed += 0.3; // gravitacia
@@ -102,60 +84,43 @@ public class Player extends JLabel {
             }
         }
 
-        this.x += xSpeed;
-        this.y += ySpeed;
-
-        this.hitBox.x = x; // vzdy ked pohnem hraca hitbox sa posunie s nim kvoli koliziam
-        this.hitBox.y = y;
-
     }
 
-    public void draw(Graphics2D gtd) {
-        gtd.setColor(Color.BLACK);
-        gtd.fillRect(x, y, width, height);
+    public void draw(Graphics2D g) {
+        g.setColor(Color.BLACK);
+        g.fillRect(x, y, width, height);
     }
 
-    public void jump() {
-    }
+    public boolean jump() {
+        hitBox.y++;
 
-    public void crouch() {
-    }
-
-    public void goLeft() {
-    }
-
-    public void goRight() {
-        this.x += xSpeed;
-    }
-
-    public void setKey(char n) {
-        switch (n) {
-            case 'w': {
-                keyUp = true;
-                break;
-            }
-
-            case 's': {
-                keyDown = true;
-                break;
-            }
-
-            case 'a': {
-                keyLeft = true;
-                break;
-            }
-
-            case 'd': {
-                keyRight = true;
-                break;
-            }
-
-            default: {
-                keyUp = false;
-                keyDown = false;
-                keyLeft = false;
-                keyRight = false;
-            }
+        for (Wall wall : panel.getWalls()) {
+            if (wall.hitBox.intersects(hitBox)) // ak je hrac na zemi moze vyskocit
+                ySpeed = -6;
         }
+
+        hitBox.y--; // musim odcitat aby hitbox ostal nezmeneny
+        this.y += ySpeed;
+        this.hitBox.y = y; // vzdy ked pohnem hraca hitbox sa posunie s nim kvoli koliziam
+        return true;
+
+    }
+
+    public boolean crouch() {
+        return false;
+    }
+
+    public boolean goLeft() {
+        this.xSpeed--;
+        this.x += xSpeed;
+        this.hitBox.x = x; // vzdy ked pohnem hraca hitbox sa posunie s nim kvoli koliziam
+        return true;
+    }
+
+    public boolean goRight() {
+        this.xSpeed++;
+        this.x += xSpeed;
+        this.hitBox.x = x;
+        return true;
     }
 }
