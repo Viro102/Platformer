@@ -10,22 +10,22 @@ public class GamePanel extends JPanel implements Runnable {
     private final int tileSize = 48; // 48x48 dlazdica
     private final int maxScreenCol = 16;
     private final int maxScreenRow = 12;
-    private final int screenWidth = tileSize * maxScreenCol; // 768 pixels
-    private final int screenHeight = tileSize * maxScreenRow; // 576 pixels
+    private final int screenWidth = this.tileSize * this.maxScreenCol; // 768 pixels
+    private final int screenHeight = this.tileSize * this.maxScreenRow; // 576 pixels
 
     private Thread gameThread;
     private KeyChecker keyChecker;
 
-    private int FPS = 60;
+    private int fps = 60;
 
     private Wall walls;
 
     private GamePanel() {
         this.walls = new Wall(0, 192);
         this.keyChecker = new KeyChecker();
-        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        this.setPreferredSize(new Dimension(this.screenWidth, this.screenHeight));
         this.setBackground(Color.white);
-        this.addKeyListener(keyChecker);
+        this.addKeyListener(this.keyChecker);
         this.setFocusable(true);
     }
 
@@ -38,22 +38,22 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void startGameThread() {
-        gameThread = new Thread(this);
-        gameThread.start();
+        this.gameThread = new Thread(this);
+        this.gameThread.start();
 
     }
 
     // Toto je hlavny game loop pouzivam delta sposob vykreslovania
     @Override
     public void run() {
-        double drawInterval = 1000000000 / FPS;
+        double drawInterval = 1000000000 / this.fps;
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
         long timer = 0;
         int drawCount = 0;
 
-        while (gameThread != null) {
+        while (this.gameThread != null) {
 
             currentTime = System.nanoTime();
 
@@ -62,7 +62,7 @@ public class GamePanel extends JPanel implements Runnable {
             lastTime = currentTime;
 
             if (delta > 1) {
-                update();
+                this.update();
                 repaint();
                 delta--;
                 drawCount++; // pocet snimkov za sekundu
@@ -80,11 +80,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     // 1. aktualizuje hracovu poziciu
     public void update() {
-        if (keyChecker.getMovement() == 'd') {
+        if (this.keyChecker.getMovement() == 'd') {
             Player.getInstance().moveRight();
-        } else if (keyChecker.getMovement() == 'a') {
+        } else if (this.keyChecker.getMovement() == 'a') {
             Player.getInstance().moveLeft();
-        } else if (keyChecker.getMovement() == 'w') {
+        } else if (this.keyChecker.getMovement() == 'w') {
             Player.getInstance().moveUp();
         }
 
@@ -96,7 +96,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Player.getInstance().draw(g);
-        walls.makeWalls(g);
+        this.walls.makeWalls(g);
         g.dispose();
     }
 }

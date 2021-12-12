@@ -13,9 +13,9 @@ public class Wall {
 
     public void makeWalls(Graphics g) {
         for (int i = 0; i < 16; i++) {
-            g.drawRect(x + (48 * i), y, 48, 48);
+            g.drawRect(this.x + (48 * i), this.y, 48, 48);
         }
     }
 
-    // TODO Kolizie, nahodne generovane plosiny
+    // TODO Kolizie, nahodne generovanie plosin
 }

@@ -47,31 +47,31 @@ public class Player {
 
     public void set() {
 
-        if (xSpeed > 0 && xSpeed < 0.75) {
-            xSpeed = 0;
+        if (this.xSpeed > 0 && this.xSpeed < 0.75) {
+            this.xSpeed = 0;
         }
 
-        if (xSpeed < 0 && xSpeed > -0.75) { // osetrenie "klzania hraca"
-            xSpeed = 0;
+        if (this.xSpeed < 0 && this.xSpeed > -0.75) { // osetrenie "klzania hraca"
+            this.xSpeed = 0;
         }
 
-        if (xSpeed > 7) { // nastavenie max rychlosti
-            xSpeed = 7;
+        if (this.xSpeed > 7) { // nastavenie max rychlosti
+            this.xSpeed = 7;
         }
 
-        if (xSpeed < -7) { // nastavenie max rychlosti na opacnu stranu
-            xSpeed = -7;
+        if (this.xSpeed < -7) { // nastavenie max rychlosti na opacnu stranu
+            this.xSpeed = -7;
         }
 
-        xSpeed *= 0.9;
+        this.xSpeed *= 0.9;
 
         // ySpeed += 0.4; // gravitacia
 
-        x += xSpeed;
-        y += ySpeed;
+        this.x += this.xSpeed;
+        this.y += this.ySpeed;
 
-        this.hitbox.x = x;
-        this.hitbox.y = y;
+        this.hitbox.x = this.x;
+        this.hitbox.y = this.y;
     }
 
     // TODO Kolizie

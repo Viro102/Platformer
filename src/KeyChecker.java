@@ -16,15 +16,15 @@ public class KeyChecker implements KeyListener {
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_D) {
-            rightKey = true;
+            this.rightKey = true;
             System.out.println("moving right");
         }
         if (code == KeyEvent.VK_A) {
-            leftKey = true;
+            this.leftKey = true;
             System.out.println("moving left");
         }
         if (code == KeyEvent.VK_W) {
-            upKey = true;
+            this.upKey = true;
             System.out.println("moving up");
         }
 
@@ -35,23 +35,23 @@ public class KeyChecker implements KeyListener {
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_D) {
-            rightKey = false;
+            this.rightKey = false;
         }
         if (code == KeyEvent.VK_A) {
-            leftKey = false;
+            this.leftKey = false;
         }
         if (code == KeyEvent.VK_W) {
-            upKey = false;
+            this.upKey = false;
         }
 
     }
 
     public char getMovement() {
-        if (rightKey) {
+        if (this.rightKey) {
             return 'd';
-        } else if (leftKey) {
+        } else if (this.leftKey) {
             return 'a';
-        } else if (upKey) {
+        } else if (this.upKey) {
             return 'w';
         }
         return 'x';
