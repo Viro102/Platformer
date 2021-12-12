@@ -1,28 +1,21 @@
-import java.awt.*;
+import java.awt.Graphics;
 
 public class Wall {
+
     private int x;
     private int y;
-    private int width;
-    private int height;
 
-    Rectangle hitBox;
-
-    public Wall(int x, int y, int width, int height) {
+    public Wall(int x, int y) {
         this.x = x;
         this.y = y;
-        this.width = width;
-        this.height = height;
-
-        hitBox = new Rectangle(x, y, width, height);
 
     }
 
-    public void draw(Graphics2D g) {
-        g.setColor(Color.BLACK);
-        g.drawRect(x, y, width, height);
-        g.setColor(Color.WHITE);
-        g.fillRect(x + 1, y + 1, width - 2, height - 2);
-
+    public void makeWalls(Graphics g) {
+        for (int i = 0; i < 16; i++) {
+            g.drawRect(x + (48 * i), y, 48, 48);
+        }
     }
+
+    // TODO Kolizie, nahodne generovane plosiny
 }

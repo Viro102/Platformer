@@ -1,125 +1,81 @@
-import java.awt.Color;
-import java.awt.Graphics2D;
+import java.awt.Graphics;
 import java.awt.Rectangle;
-import javax.swing.JLabel;
 
-public class Player extends JLabel {
+public class Player {
+    private static Player instance = null;
 
-    private GamePanel panel;
+    private KeyChecker keyChecker;
 
     private int x;
     private int y;
     private int width;
     private int height;
-
     private double xSpeed;
     private double ySpeed;
 
-    private Rectangle hitBox;
+    private Rectangle hitbox;
 
-    private KeyChecker kChecker;
-
-    public Player(int x, int y, GamePanel panel) {
-        this.panel = panel;
+    private Player(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
-
-        this.width = 48;
-        this.height = 96;
-        this.hitBox = new Rectangle(this.x, this.y, this.width, this.height);
-        this.kChecker = new KeyChecker(this);
+        this.width = width;
+        this.height = height;
+        this.keyChecker = new KeyChecker();
+        this.hitbox = new Rectangle();
     }
 
-    public void setMovementRules() {
-        // if (this.keyRight && this.keyLeft || !this.keyLeft && !this.keyRight) {
-        // this.xSpeed *= 0.8;
-        // }
-
-        // osetrenie pohybu, nastavenie max rychlosti...
-        if (xSpeed > 0 && xSpeed < 0.75)
-
-        {
-            xSpeed = 0;
+    public static Player getInstance() {
+        if (instance == null) {
+            instance = new Player(48, 96, 48, 96);
         }
 
-        if (xSpeed < 0 && xSpeed > -0.75) {
-            xSpeed = 0;
-        }
-
-        if (xSpeed > 7) {
-            xSpeed = 7;
-        }
-
-        if (xSpeed < -7) {
-            xSpeed = -7;
-        }
-
-        ySpeed += 0.3; // gravitacia
-
-        // horizontalna kolizia
-        hitBox.x += xSpeed;
-        for (Wall wall : panel.getWalls()) {
-            if (hitBox.intersects(wall.hitBox)) {
-                hitBox.x -= xSpeed;
-                while (!wall.hitBox.intersects(hitBox)) { // toto je kontrola len hitboxu, hrac stale je inde
-                    hitBox.x += Math.signum(xSpeed); // signum preto lebo chceme aby kolizie fungovali na obidve strany
-                    hitBox.x -= Math.signum(xSpeed);
-                    xSpeed = 0;
-                    x = hitBox.x;
-                }
-            }
-        }
-
-        // vertikalna kolizia
-        hitBox.y += ySpeed;
-        for (Wall wall : panel.getWalls()) {
-            if (hitBox.intersects(wall.hitBox)) {
-                hitBox.y -= ySpeed;
-                while (!wall.hitBox.intersects(hitBox)) {
-                    hitBox.y += Math.signum(ySpeed);
-                    hitBox.y -= Math.signum(ySpeed);
-                    ySpeed = 0;
-                    y = hitBox.y;
-                }
-            }
-        }
-
+        return instance;
     }
 
-    public void draw(Graphics2D g) {
-        g.setColor(Color.BLACK);
+    public void draw(Graphics g) {
         g.fillRect(this.x, this.y, this.width, this.height);
     }
 
-    public boolean jump() {
-        hitBox.y++;
+    public void moveRight() {
+        this.xSpeed++;
+    }
 
-        for (Wall wall : panel.getWalls()) {
-            if (wall.hitBox.intersects(hitBox)) // ak je hrac na zemi moze vyskocit
-                ySpeed = -6;
+    public void moveUp() {
+        this.ySpeed--;
+    }
+
+    public void moveLeft() {
+        this.xSpeed--;
+    }
+
+    public void set() {
+
+        if (xSpeed > 0 && xSpeed < 0.75) {
+            xSpeed = 0;
         }
 
-        hitBox.y--; // musim odcitat aby hitbox ostal nezmeneny
-        this.y += ySpeed;
-        this.hitBox.y = y; // vzdy ked pohnem hraca hitbox sa posunie s nim kvoli koliziam
-        return true;
+        if (xSpeed < 0 && xSpeed > -0.75) { // osetrenie "klzania hraca"
+            xSpeed = 0;
+        }
+
+        if (xSpeed > 7) { // nastavenie max rychlosti
+            xSpeed = 7;
+        }
+
+        if (xSpeed < -7) { // nastavenie max rychlosti na opacnu stranu
+            xSpeed = -7;
+        }
+
+        xSpeed *= 0.9;
+
+        // ySpeed += 0.4; // gravitacia
+
+        x += xSpeed;
+        y += ySpeed;
+
+        this.hitbox.x = x;
+        this.hitbox.y = y;
     }
 
-    public boolean crouch() {
-        return true;
-    }
-
-    public boolean goLeft() {
-        this.xSpeed--;
-        this.x += xSpeed;
-        this.hitBox.x = x; // vzdy ked pohnem hraca hitbox sa posunie s nim kvoli koliziam
-        return true;
-    }
-
-    public boolean goRight() {
-        this.xSpeed++;
-        this.x += xSpeed;
-        this.hitBox.x = x;
-        return true;
-    }
+    // TODO Kolizie
 }
