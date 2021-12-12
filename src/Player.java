@@ -4,8 +4,6 @@ import java.awt.Rectangle;
 public class Player {
     private static Player instance = null;
 
-    private KeyChecker keyChecker;
-
     private int x;
     private int y;
     private int width;
@@ -20,7 +18,6 @@ public class Player {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.keyChecker = new KeyChecker();
         this.hitbox = new Rectangle();
     }
 
