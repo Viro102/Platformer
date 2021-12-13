@@ -18,7 +18,7 @@ public class Player {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.hitbox = new Rectangle();
+        this.hitbox = new Rectangle(x, y, width, height);
     }
 
     public static Player getInstance() {
