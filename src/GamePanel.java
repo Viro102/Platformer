@@ -30,11 +30,11 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public static GamePanel getInstance() {
-        if (panelInstance == null) {
-            panelInstance = new GamePanel();
+        if (GamePanel.panelInstance == null) {
+            GamePanel.panelInstance = new GamePanel();
         }
 
-        return panelInstance;
+        return GamePanel.panelInstance;
     }
 
     public void startGameThread() {

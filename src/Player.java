@@ -22,11 +22,11 @@ public class Player {
     }
 
     public static Player getInstance() {
-        if (instance == null) {
-            instance = new Player(48, 96, 48, 96);
+        if (Player.instance == null) {
+            Player.instance = new Player(48, 96, 48, 96);
         }
 
-        return instance;
+        return Player.instance;
     }
 
     public void draw(Graphics g) {
