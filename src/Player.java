@@ -42,13 +42,13 @@ public class Player {
 
     public void moveUp() {
         // odrazi sa len vtedy ak je hrac na plosine
-        hitbox.y++;
+        this.hitbox.y++;
         for (Wall wall : GamePanel.getInstance().getWalls()) {
-            if (hitbox.intersects(wall.getHitbox())) {
+            if (this.hitbox.intersects(wall.getHitbox())) {
                 this.ySpeed = -8;
             }
         }
-        hitbox.y--;
+        this.hitbox.y--;
 
     }
 
@@ -81,45 +81,45 @@ public class Player {
         boolean hasCollided = false;
 
         // Horizontalna kolizia pre steny
-        hitbox.x += xSpeed;
+        this.hitbox.x += this.xSpeed;
         for (Wall wall : GamePanel.getInstance().getWalls()) {
-            if (hitbox.intersects(wall.getHitbox())) {
-                hitbox.x -= xSpeed;
-                while (!wall.getHitbox().intersects(hitbox)) {
-                    hitbox.x += Math.signum(xSpeed);
+            if (this.hitbox.intersects(wall.getHitbox())) {
+                this.hitbox.x -= this.xSpeed;
+                while (!this.hitbox.intersects(wall.getHitbox())) {
+                    this.hitbox.x += Math.signum(this.xSpeed);
                 }
-                hitbox.x -= Math.signum(xSpeed);
-                xSpeed = 0;
-                x = hitbox.x;
+                this.hitbox.x -= Math.signum(this.xSpeed);
+                this.xSpeed = 0;
+                this.x = this.hitbox.x;
             }
         }
 
         for (Obstacle obstacle : GamePanel.getInstance().getObstacles()) {
-            if (hitbox.intersects(obstacle.getHitbox())) {
+            if (this.hitbox.intersects(obstacle.getHitbox())) {
                 hasCollided = true;
             }
         }
 
-        if (hitbox.intersects(GamePanel.getInstance().getFinish().getHitbox())) {
+        if (this.hitbox.intersects(GamePanel.getInstance().getFinish().getHitbox())) {
             this.win = true;
         }
 
         // Vertikalna kolizia pre steny
-        hitbox.y += ySpeed;
+        this.hitbox.y += this.ySpeed;
         for (Wall wall : GamePanel.getInstance().getWalls()) {
-            if (hitbox.intersects(wall.getHitbox())) {
-                hitbox.y -= ySpeed;
-                while (!wall.getHitbox().intersects(hitbox)) {
-                    hitbox.y += Math.signum(ySpeed);
+            if (this.hitbox.intersects(wall.getHitbox())) {
+                this.hitbox.y -= this.ySpeed;
+                while (!this.hitbox.intersects(wall.getHitbox())) {
+                    this.hitbox.y += Math.signum(this.ySpeed);
                 }
-                hitbox.y -= Math.signum(ySpeed);
-                ySpeed = 0;
-                y = hitbox.y;
+                this.hitbox.y -= Math.signum(this.ySpeed);
+                this.ySpeed = 0;
+                this.y = this.hitbox.y;
             }
         }
 
         for (Obstacle obstacle : GamePanel.getInstance().getObstacles()) {
-            if (hitbox.intersects(obstacle.getHitbox())) {
+            if (this.hitbox.intersects(obstacle.getHitbox())) {
                 hasCollided = true;
             }
         }
@@ -152,11 +152,7 @@ public class Player {
     }
 
     public boolean hasWon() {
-        if (this.win) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.win;
     }
 
     public void setWin(boolean win) {

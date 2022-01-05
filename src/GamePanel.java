@@ -9,12 +9,12 @@ public class GamePanel extends JPanel implements Runnable {
 
     private static GamePanel panelInstance = null;
 
-    public static final int tileSize = 32; // 32x32 dlazdica
+    public static final int TILESIZE = 32; // 32x32 dlazdica
 
     private final int maxScreenCol = 30;
     private final int maxScreenRow = 20;
-    private final int screenWidth = GamePanel.tileSize * this.maxScreenCol;
-    private final int screenHeight = GamePanel.tileSize * this.maxScreenRow;
+    private final int screenWidth = GamePanel.TILESIZE * this.maxScreenCol;
+    private final int screenHeight = GamePanel.TILESIZE * this.maxScreenRow;
 
     private Thread gameThread;
     private KeyChecker keyChecker;
@@ -29,7 +29,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.walls = Map1.getInstance().makeTerrain();
         this.obstacles = Map1.getInstance().makeObstacles();
         this.keyChecker = new KeyChecker();
-        reset();
+        this.reset();
         this.setPreferredSize(new Dimension(this.screenWidth, this.screenHeight));
         this.setBackground(Color.WHITE);
         this.addKeyListener(this.keyChecker);
@@ -125,12 +125,12 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         if (this.keyChecker.getInput() == 'r') {
-            reset();
+            this.reset();
         }
 
         Player.getInstance().set();
         if (Player.getInstance().hasWon()) {
-            hasWon();
+            this.hasWon();
         }
     }
 
@@ -138,10 +138,10 @@ public class GamePanel extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Player.getInstance().draw(g);
-        for (Wall wall : walls) {
+        for (Wall wall : this.walls) {
             wall.draw(g);
         }
-        for (Obstacle obstacle : obstacles) {
+        for (Obstacle obstacle : this.obstacles) {
             obstacle.draw(g);
         }
         this.finish.draw(g);
