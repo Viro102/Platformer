@@ -21,17 +21,17 @@ public class GamePanel extends JPanel implements Runnable {
     private int fps = 60;
 
     private ArrayList<Wall> walls;
-    private ArrayList<Enemy> enemies;
+    private ArrayList<Obstacle> obstacles;
 
     private GamePanel() {
         this.walls = Map1.getInstance().makeTerrain();
-        this.enemies = Map1.getInstance().makeEnemies();
+        this.obstacles = Map1.getInstance().makeObstacles();
         this.keyChecker = new KeyChecker();
+        reset();
         this.setPreferredSize(new Dimension(this.screenWidth, this.screenHeight));
-        this.setBackground(Color.white);
+        this.setBackground(Color.WHITE);
         this.addKeyListener(this.keyChecker);
         this.setFocusable(true);
-        reset();
     }
 
     public static GamePanel getInstance() {
@@ -47,23 +47,24 @@ public class GamePanel extends JPanel implements Runnable {
         this.gameThread.start();
     }
 
-    private void reset() {
+    public void reset() {
         Player.getInstance().setX(0);
         Player.getInstance().setY(0);
         Player.getInstance().setXSpeed(0);
         Player.getInstance().setYSpeed(0);
         this.walls.clear();
-        this.enemies.clear();
+        this.obstacles.clear();
         this.walls = Map1.getInstance().makeTerrain();
-        this.enemies = Map1.getInstance().makeEnemies();
+        this.obstacles = Map1.getInstance().makeObstacles();
+        System.out.println("resetting to start...");
     }
 
     public ArrayList<Wall> getWalls() {
         return this.walls;
     }
 
-    public ArrayList<Enemy> getEnemies() {
-        return this.enemies;
+    public ArrayList<Obstacle> getEnemies() {
+        return this.obstacles;
     }
 
     // Toto je hlavny game loop pouzivam delta sposob vykreslovania
@@ -126,8 +127,8 @@ public class GamePanel extends JPanel implements Runnable {
         for (Wall wall : walls) {
             wall.draw(g);
         }
-        for (Enemy enemy : enemies) {
-            enemy.draw(g);
+        for (Obstacle obstacle : obstacles) {
+            obstacle.draw(g);
         }
         g.dispose();
     }

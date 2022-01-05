@@ -5,14 +5,14 @@ public class Map1 {
     private static Map1 instance = null;
 
     private ArrayList<Wall> terrain;
-    private ArrayList<Enemy> enemies;
+    private ArrayList<Obstacle> obstacles;
 
     private Map1() {
     }
 
     public ArrayList<Wall> makeTerrain() {
         terrain = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 25; i++) {
             this.terrain.add(new Wall(0 + (GamePanel.tileSize * i), GamePanel.tileSize * 5));
         }
 
@@ -25,10 +25,25 @@ public class Map1 {
         return this.terrain;
     }
 
-    public ArrayList<Enemy> makeEnemies() {
-        enemies = new ArrayList<>();
-        this.enemies.add(new Enemy(GamePanel.tileSize * 18, GamePanel.tileSize * 14));
-        return this.enemies;
+    public ArrayList<Obstacle> makeObstacles() {
+        obstacles = new ArrayList<>();
+        // hranice mapy vlavo a vpravo
+        for (int i = 0; i < 20; i++) {
+            this.obstacles.add(new Obstacle(GamePanel.tileSize * -1, GamePanel.tileSize * i));
+            this.obstacles.add(new Obstacle(GamePanel.tileSize * 30, GamePanel.tileSize * i));
+        }
+        // hranica mapy dole
+        for (int i = 0; i < 30; i++) {
+            this.obstacles.add(new Obstacle(GamePanel.tileSize * i, GamePanel.tileSize * 20));
+        }
+
+        this.obstacles.add(new Obstacle(GamePanel.tileSize * 7, GamePanel.tileSize * 4));
+        this.obstacles.add(new Obstacle(GamePanel.tileSize * 8, GamePanel.tileSize * 4));
+        this.obstacles.add(new Obstacle(GamePanel.tileSize * 9, GamePanel.tileSize * 4));
+        this.obstacles.add(new Obstacle(GamePanel.tileSize * 10, GamePanel.tileSize * 4));
+        this.obstacles.add(new Obstacle(GamePanel.tileSize * 11, GamePanel.tileSize * 4));
+
+        return this.obstacles;
     }
 
     public static Map1 getInstance() {
