@@ -17,6 +17,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     private Thread gameThread;
     private KeyChecker keyChecker;
+    private Finish finish;
 
     private int fps = 60;
 
@@ -56,6 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.obstacles.clear();
         this.walls = Map1.getInstance().makeTerrain();
         this.obstacles = Map1.getInstance().makeObstacles();
+        this.finish = Map1.getInstance().makeFinish();
         System.out.println("resetting to start...");
     }
 
@@ -63,7 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
         return this.walls;
     }
 
-    public ArrayList<Obstacle> getEnemies() {
+    public ArrayList<Obstacle> getObstacles() {
         return this.obstacles;
     }
 
@@ -130,6 +132,7 @@ public class GamePanel extends JPanel implements Runnable {
         for (Obstacle obstacle : obstacles) {
             obstacle.draw(g);
         }
+        this.finish.draw(g);
         g.dispose();
     }
 }

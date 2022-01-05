@@ -93,7 +93,7 @@ public class Player {
             }
         }
 
-        for (Obstacle obstacle : GamePanel.getInstance().getEnemies()) {
+        for (Obstacle obstacle : GamePanel.getInstance().getObstacles()) {
             if (hitbox.intersects(obstacle.getHitbox())) {
                 hasCollided = true;
             }
@@ -113,7 +113,7 @@ public class Player {
             }
         }
 
-        for (Obstacle obstacle : GamePanel.getInstance().getEnemies()) {
+        for (Obstacle obstacle : GamePanel.getInstance().getObstacles()) {
             if (hitbox.intersects(obstacle.getHitbox())) {
                 hasCollided = true;
             }

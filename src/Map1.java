@@ -7,6 +7,8 @@ public class Map1 {
     private ArrayList<Wall> terrain;
     private ArrayList<Obstacle> obstacles;
 
+    private Finish finish;
+
     private Map1() {
     }
 
@@ -44,6 +46,11 @@ public class Map1 {
         this.obstacles.add(new Obstacle(GamePanel.tileSize * 11, GamePanel.tileSize * 4));
 
         return this.obstacles;
+    }
+
+    public Finish makeFinish() {
+        this.finish = new Finish(GamePanel.tileSize * 24, GamePanel.tileSize * 4);
+        return this.finish;
     }
 
     public static Map1 getInstance() {
