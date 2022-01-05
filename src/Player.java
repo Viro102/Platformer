@@ -77,7 +77,9 @@ public class Player {
         // gravitacia
         this.ySpeed += 0.4;
 
-        // Horizontalna kolizia
+        boolean hasCollided = false;
+
+        // Horizontalna kolizia pre steny
         hitbox.x += xSpeed;
         for (Wall wall : GamePanel.getInstance().getWalls()) {
             if (hitbox.intersects(wall.getHitbox())) {
@@ -91,7 +93,13 @@ public class Player {
             }
         }
 
-        // Vertikalna kolizia
+        for (Obstacle obstacle : GamePanel.getInstance().getEnemies()) {
+            if (hitbox.intersects(obstacle.getHitbox())) {
+                hasCollided = true;
+            }
+        }
+
+        // Vertikalna kolizia pre steny
         hitbox.y += ySpeed;
         for (Wall wall : GamePanel.getInstance().getWalls()) {
             if (hitbox.intersects(wall.getHitbox())) {
@@ -103,6 +111,16 @@ public class Player {
                 ySpeed = 0;
                 y = hitbox.y;
             }
+        }
+
+        for (Obstacle obstacle : GamePanel.getInstance().getEnemies()) {
+            if (hitbox.intersects(obstacle.getHitbox())) {
+                hasCollided = true;
+            }
+        }
+
+        if (hasCollided) {
+            GamePanel.getInstance().reset();
         }
 
         this.x += this.xSpeed;
