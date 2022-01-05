@@ -41,7 +41,7 @@ public class Player {
     }
 
     public void moveUp() {
-        // odrazi sa len vtedy ak je hrac na plosine
+        // Hrac vyskoci len vtedy ak je na plosine
         this.hitbox.y++;
         for (Wall wall : GamePanel.getInstance().getWalls()) {
             if (this.hitbox.intersects(wall.getHitbox())) {
