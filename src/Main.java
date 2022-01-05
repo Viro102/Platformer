@@ -13,8 +13,9 @@ public class Main {
             MainFrame mainFrame = new MainFrame();
             GamePanel panel = GamePanel.getInstance();
             mainFrame.add(panel);
-            mainFrame.setVisible(true);
             mainFrame.pack();
+            mainFrame.setLocationRelativeTo(null);
+            mainFrame.setVisible(true);
             panel.startGameThread();
         } else {
             System.exit(0);
