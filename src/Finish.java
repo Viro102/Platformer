@@ -22,5 +22,4 @@ public class Finish {
     public Rectangle getHitbox() {
         return this.hitBox;
     }
-
 }
