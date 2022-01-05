@@ -6,6 +6,7 @@ public class KeyChecker implements KeyListener {
     private boolean rightKey;
     private boolean leftKey;
     private boolean upKey;
+    private boolean resetKey;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -27,6 +28,10 @@ public class KeyChecker implements KeyListener {
             this.upKey = true;
             System.out.println("moving up");
         }
+        if (code == KeyEvent.VK_R) {
+            this.resetKey = true;
+            System.out.println("resetting to start...");
+        }
 
     }
 
@@ -43,6 +48,9 @@ public class KeyChecker implements KeyListener {
         if (code == KeyEvent.VK_W) {
             this.upKey = false;
         }
+        if (code == KeyEvent.VK_R) {
+            this.resetKey = false;
+        }
 
     }
 
@@ -55,5 +63,13 @@ public class KeyChecker implements KeyListener {
             return 'w';
         }
         return 'x';
+    }
+
+    public char getInput() {
+        if (this.resetKey) {
+            return 'r';
+        } else {
+            return 'x';
+        }
     }
 }

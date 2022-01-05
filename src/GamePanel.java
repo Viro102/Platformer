@@ -1,32 +1,37 @@
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.awt.Color;
 
 public class GamePanel extends JPanel implements Runnable {
 
     private static GamePanel panelInstance = null;
 
-    private final int tileSize = 48; // 48x48 dlazdica
-    private final int maxScreenCol = 16;
-    private final int maxScreenRow = 12;
-    private final int screenWidth = this.tileSize * this.maxScreenCol; // 768 pixels
-    private final int screenHeight = this.tileSize * this.maxScreenRow; // 576 pixels
+    public static final int tileSize = 32; // 32x32 dlazdica
+
+    private final int maxScreenCol = 30;
+    private final int maxScreenRow = 20;
+    private final int screenWidth = GamePanel.tileSize * this.maxScreenCol;
+    private final int screenHeight = GamePanel.tileSize * this.maxScreenRow;
 
     private Thread gameThread;
     private KeyChecker keyChecker;
 
     private int fps = 60;
 
-    private Wall walls;
+    private ArrayList<Wall> walls;
+    private ArrayList<Enemy> enemies;
 
     private GamePanel() {
-        this.walls = new Wall(0, 192);
+        this.walls = Map1.getInstance().makeTerrain();
+        this.enemies = Map1.getInstance().makeEnemies();
         this.keyChecker = new KeyChecker();
         this.setPreferredSize(new Dimension(this.screenWidth, this.screenHeight));
         this.setBackground(Color.white);
         this.addKeyListener(this.keyChecker);
         this.setFocusable(true);
+        reset();
     }
 
     public static GamePanel getInstance() {
@@ -40,7 +45,25 @@ public class GamePanel extends JPanel implements Runnable {
     public void startGameThread() {
         this.gameThread = new Thread(this);
         this.gameThread.start();
+    }
 
+    private void reset() {
+        Player.getInstance().setX(0);
+        Player.getInstance().setY(0);
+        Player.getInstance().setXSpeed(0);
+        Player.getInstance().setYSpeed(0);
+        this.walls.clear();
+        this.enemies.clear();
+        this.walls = Map1.getInstance().makeTerrain();
+        this.enemies = Map1.getInstance().makeEnemies();
+    }
+
+    public ArrayList<Wall> getWalls() {
+        return this.walls;
+    }
+
+    public ArrayList<Enemy> getEnemies() {
+        return this.enemies;
     }
 
     // Toto je hlavny game loop pouzivam delta sposob vykreslovania
@@ -88,6 +111,10 @@ public class GamePanel extends JPanel implements Runnable {
             Player.getInstance().moveUp();
         }
 
+        if (this.keyChecker.getInput() == 'r') {
+            reset();
+        }
+
         Player.getInstance().set();
 
     }
@@ -96,7 +123,12 @@ public class GamePanel extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Player.getInstance().draw(g);
-        this.walls.makeWalls(g);
+        for (Wall wall : walls) {
+            wall.draw(g);
+        }
+        for (Enemy enemy : enemies) {
+            enemy.draw(g);
+        }
         g.dispose();
     }
 }
