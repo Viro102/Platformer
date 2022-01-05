@@ -2,10 +2,10 @@ import javax.swing.JOptionPane;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        String[] options = { "Start hry", "Zavri hru" };
+        String[] options = { "Start game", "Close game" };
         int n = JOptionPane.showOptionDialog(null,
-                "Ovladanie A - dolava, D - doprava, W - skok\nTvojou ulohou je sa dostat ku modremu policku\nVyhybaj sa cervenym objektom",
-                "Uvodne info",
+                "Keybindings:\n A = walk left, D = walk right, W = jump\nThe goal of this game is to reach the blue tile.\nBeware of red tiles!",
+                "Main menu",
                 JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
