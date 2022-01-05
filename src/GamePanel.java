@@ -1,3 +1,4 @@
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -61,12 +62,21 @@ public class GamePanel extends JPanel implements Runnable {
         System.out.println("resetting to start...");
     }
 
+    public void hasWon() {
+        JOptionPane.showMessageDialog(null, "Congratulations!\nYou won!");
+        System.exit(0);
+    }
+
     public ArrayList<Wall> getWalls() {
         return this.walls;
     }
 
     public ArrayList<Obstacle> getObstacles() {
         return this.obstacles;
+    }
+
+    public Finish getFinish() {
+        return this.finish;
     }
 
     // Toto je hlavny game loop pouzivam delta sposob vykreslovania
@@ -119,7 +129,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         Player.getInstance().set();
-
+        if (Player.getInstance().hasWon()) {
+            hasWon();
+        }
     }
 
     // 2. vykresluje prostredie (renderuje)

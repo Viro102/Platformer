@@ -11,6 +11,7 @@ public class Player {
     private int height;
     private double xSpeed;
     private double ySpeed;
+    private boolean win;
 
     private Rectangle hitbox;
 
@@ -99,6 +100,10 @@ public class Player {
             }
         }
 
+        if (hitbox.intersects(GamePanel.getInstance().getFinish().getHitbox())) {
+            this.win = true;
+        }
+
         // Vertikalna kolizia pre steny
         hitbox.y += ySpeed;
         for (Wall wall : GamePanel.getInstance().getWalls()) {
@@ -144,5 +149,17 @@ public class Player {
 
     public void setYSpeed(double y) {
         this.ySpeed = y;
+    }
+
+    public boolean hasWon() {
+        if (this.win) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void setWin(boolean win) {
+        this.win = win;
     }
 }
