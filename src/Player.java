@@ -80,7 +80,7 @@ public class Player {
 
         boolean hasCollided = false;
 
-        // Horizontalna kolizia pre steny
+        // Horizontalna kolizia
         this.hitbox.x += this.xSpeed;
         for (Wall wall : GamePanel.getInstance().getWalls()) {
             if (this.hitbox.intersects(wall.getHitbox())) {
@@ -104,7 +104,7 @@ public class Player {
             this.win = true;
         }
 
-        // Vertikalna kolizia pre steny
+        // Vertikalna kolizia
         this.hitbox.y += this.ySpeed;
         for (Wall wall : GamePanel.getInstance().getWalls()) {
             if (this.hitbox.intersects(wall.getHitbox())) {
@@ -153,9 +153,5 @@ public class Player {
 
     public boolean hasWon() {
         return this.win;
-    }
-
-    public void setWin(boolean win) {
-        this.win = win;
     }
 }
