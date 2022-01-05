@@ -116,11 +116,15 @@ public class GamePanel extends JPanel implements Runnable {
 
     // 1. aktualizuje hracovu poziciu
     public void update() {
-        if (this.keyChecker.getMovement() == 'd') {
+        if (this.keyChecker.getInput() == 'd') {
             Player.getInstance().moveRight();
-        } else if (this.keyChecker.getMovement() == 'a') {
+        }
+
+        if (this.keyChecker.getInput() == 'a') {
             Player.getInstance().moveLeft();
-        } else if (this.keyChecker.getMovement() == 'w') {
+        }
+
+        if (this.keyChecker.getInput() == 'w') {
             Player.getInstance().moveUp();
         }
 
@@ -129,6 +133,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         Player.getInstance().set();
+
         if (Player.getInstance().hasWon()) {
             this.hasWon();
         }

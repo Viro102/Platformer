@@ -54,19 +54,14 @@ public class KeyChecker implements KeyListener {
 
     }
 
-    public char getMovement() {
+    public char getInput() {
         if (this.rightKey) {
             return 'd';
         } else if (this.leftKey) {
             return 'a';
         } else if (this.upKey) {
             return 'w';
-        }
-        return 'x';
-    }
-
-    public char getInput() {
-        if (this.resetKey) {
+        } else if (this.resetKey) {
             return 'r';
         } else {
             return 'x';
