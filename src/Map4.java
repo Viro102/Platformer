@@ -19,6 +19,13 @@ public class Map4 {
         this.oneTile = GamePanel.TILESIZE;
     }
 
+    public static Map4 getInstance() {
+        if (Map4.instance == null) {
+            Map4.instance = new Map4();
+        }
+        return Map4.instance;
+    }
+
     public ArrayList<Wall> makeTerrain() {
         this.terrain = new ArrayList<>();
 
@@ -91,12 +98,5 @@ public class Map4 {
     public Finish makeFinish() {
         this.finish = new Finish(this.oneTile * 5, this.oneTile * 1);
         return this.finish;
-    }
-
-    public static Map4 getInstance() {
-        if (Map4.instance == null) {
-            Map4.instance = new Map4();
-        }
-        return Map4.instance;
     }
 }

@@ -19,6 +19,13 @@ public class Map6 {
         this.oneTile = GamePanel.TILESIZE;
     }
 
+    public static Map6 getInstance() {
+        if (Map6.instance == null) {
+            Map6.instance = new Map6();
+        }
+        return Map6.instance;
+    }
+
     /**
      * Essentially builds all the platforms to walk on
      * 
@@ -112,12 +119,5 @@ public class Map6 {
     public Finish makeFinish() {
         this.finish = new Finish(this.oneTile * 2, this.oneTile * 1);
         return this.finish;
-    }
-
-    public static Map6 getInstance() {
-        if (Map6.instance == null) {
-            Map6.instance = new Map6();
-        }
-        return Map6.instance;
     }
 }

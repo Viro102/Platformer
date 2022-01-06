@@ -19,6 +19,13 @@ public class Map2 {
         this.oneTile = GamePanel.TILESIZE;
     }
 
+    public static Map2 getInstance() {
+        if (Map2.instance == null) {
+            Map2.instance = new Map2();
+        }
+        return Map2.instance;
+    }
+
     public ArrayList<Wall> makeTerrain() {
         this.terrain = new ArrayList<>();
         for (int i = 0; i < 18; i++) {
@@ -70,12 +77,5 @@ public class Map2 {
     public Finish makeFinish() {
         this.finish = new Finish(this.oneTile * 25, this.oneTile * 13);
         return this.finish;
-    }
-
-    public static Map2 getInstance() {
-        if (Map2.instance == null) {
-            Map2.instance = new Map2();
-        }
-        return Map2.instance;
     }
 }

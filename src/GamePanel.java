@@ -23,10 +23,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public static final int TILESIZE = 32; // 32x32 tile
 
-    private final int maxScreenCol = 30;
-    private final int maxScreenRow = 20;
-    private final int screenWidth = GamePanel.TILESIZE * this.maxScreenCol; // 960 pixels
-    private final int screenHeight = GamePanel.TILESIZE * this.maxScreenRow; // 640 pixels
+    private int maxScreenCol = 30;
+    private int maxScreenRow = 20;
+    private int screenWidth = GamePanel.TILESIZE * this.maxScreenCol; // 960 pixels
+    private int screenHeight = GamePanel.TILESIZE * this.maxScreenRow; // 640 pixels
 
     private Thread gameThread;
     private KeyChecker keyChecker;
