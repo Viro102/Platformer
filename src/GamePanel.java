@@ -54,7 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
             System.exit(1);
         }
 
-        this.mapNumber = generator.nextInt(6 - 1) + 1;
+        this.mapNumber = this.generator.nextInt(6 - 1) + 1;
         this.reset(this.mapNumber);
         this.setPreferredSize(new Dimension(this.screenWidth, this.screenHeight));
         this.setBackground(Color.WHITE);
@@ -152,7 +152,6 @@ public class GamePanel extends JPanel implements Runnable {
     public void hasWon() {
         JOptionPane.showMessageDialog(null, "Congratulations!\nYou won!");
         System.exit(0);
-        ;
     }
 
     // getters
@@ -229,7 +228,7 @@ public class GamePanel extends JPanel implements Runnable {
     // Draws the environment (renders)
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(backgroundPicture, 0, 0, null);
+        g.drawImage(this.backgroundPicture, 0, 0, null);
         Player.getInstance().draw(g);
         for (Wall wall : this.walls) {
             wall.draw(g);
