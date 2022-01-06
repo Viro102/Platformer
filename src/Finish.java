@@ -21,7 +21,7 @@ public class Finish {
     /**
      * Draws the corresponding shape
      * 
-     * @param g - needed for graphics component
+     * @param g needed for graphics component
      */
     public void draw(Graphics g) {
         g.setColor(Color.BLUE);

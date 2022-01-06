@@ -23,7 +23,7 @@ public class Main {
             GamePanel panel = GamePanel.getInstance();
             mainFrame.add(panel);
             mainFrame.pack();
-            mainFrame.setLocationRelativeTo(null);
+            mainFrame.setLocationRelativeTo(null); // The window frame will display in the middle of the screen
             mainFrame.setVisible(true);
             panel.startGameThread();
         } else {

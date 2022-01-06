@@ -1,6 +1,10 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Some bits are mine but most of this class's logic is from
+ * the internet
+ */
 public class KeyChecker implements KeyListener {
 
     private boolean rightKey;

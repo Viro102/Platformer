@@ -28,7 +28,7 @@ public class Map3 {
         for (int i = 5; i < 8; i++) {
             this.terrain.add(new Wall(this.oneTile * i, this.oneTile * 10));
         }
-        // stlp
+
         for (int i = 11; i < 20; i++) {
             this.terrain.add(new Wall(this.oneTile * 6, this.oneTile * i));
         }
@@ -36,7 +36,7 @@ public class Map3 {
         for (int i = 12; i < 15; i++) {
             this.terrain.add(new Wall(this.oneTile * i, this.oneTile * 10));
         }
-        // stlp
+
         for (int i = 11; i < 20; i++) {
             this.terrain.add(new Wall(this.oneTile * 13, this.oneTile * i));
         }
@@ -44,7 +44,7 @@ public class Map3 {
         for (int i = 18; i < 21; i++) {
             this.terrain.add(new Wall(this.oneTile * i, this.oneTile * 9));
         }
-        // stlp
+
         for (int i = 10; i < 20; i++) {
             this.terrain.add(new Wall(this.oneTile * 19, this.oneTile * i));
         }
@@ -62,12 +62,12 @@ public class Map3 {
 
     public ArrayList<Obstacle> makeObstacles() {
         this.obstacles = new ArrayList<>();
-        // hranice mapy vlavo a vpravo
+        // Left and right boundaries
         for (int i = 0; i < 20; i++) {
             this.obstacles.add(new Obstacle(this.oneTile * -1, this.oneTile * i));
             this.obstacles.add(new Obstacle(this.oneTile * 30, this.oneTile * i));
         }
-        // hranica mapy dole
+        // Bottom boundary
         for (int i = 0; i < 30; i++) {
             this.obstacles.add(new Obstacle(this.oneTile * i, this.oneTile * 20));
         }
@@ -90,6 +90,4 @@ public class Map3 {
         }
         return Map3.instance;
     }
-
-    // TODO nahodny vyber medzi nimi, dokumentacia
 }

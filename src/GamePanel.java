@@ -11,7 +11,8 @@ import java.util.Random;
 import java.awt.Color;
 
 /**
- * The main panel where the game runs
+ * The main panel where the game runs,
+ * this panel is then added to the mainframe
  * 
  * @author Adam Virostek
  * @version 1.0
@@ -20,7 +21,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     private static GamePanel panelInstance = null;
 
-    public static final int TILESIZE = 32; // 32x32 dlazdica
+    public static final int TILESIZE = 32; // 32x32 tile
 
     private final int maxScreenCol = 30;
     private final int maxScreenRow = 20;
@@ -70,7 +71,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     /**
-     * Essentialy starts the program,
+     * Essentially starts the program,
      * so we can render and update correctly
      */
     public void startGameThread() {
@@ -82,7 +83,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Method used for building and resetting the game world,
      * it resets the player position to default and clears all terrain
      * 
-     * @param mapNumber - is used to specify which map we want to build
+     * @param mapNumber is used to specify which map we want to build
      */
     public void reset(int mapNumber) {
         Player.getInstance().setXSpeed(0);

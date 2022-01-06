@@ -20,9 +20,9 @@ public class Map6 {
     }
 
     /**
-     * Essentialy builds all the platforms to walk on
+     * Essentially builds all the platforms to walk on
      * 
-     * @return - returns arraylist for collision checking
+     * @return arraylist for collision checking
      */
     public ArrayList<Wall> makeTerrain() {
         this.terrain = new ArrayList<>();
@@ -79,18 +79,18 @@ public class Map6 {
     }
 
     /**
-     * Essentialy builds all the obstacles to steer away from
+     * Essentially builds all the obstacles to steer away from
      * 
-     * @return - returns arraylist for collision checking
+     * @return arraylist for collision checking
      */
     public ArrayList<Obstacle> makeObstacles() {
         this.obstacles = new ArrayList<>();
-        // hranice mapy vlavo a vpravo
+        // Left and right boundaries
         for (int i = 0; i < 20; i++) {
             this.obstacles.add(new Obstacle(this.oneTile * -1, this.oneTile * i));
             this.obstacles.add(new Obstacle(this.oneTile * 30, this.oneTile * i));
         }
-        // hranica mapy dole
+        // Botton boundary
         for (int i = 0; i < 30; i++) {
             this.obstacles.add(new Obstacle(this.oneTile * i, this.oneTile * 20));
         }
@@ -107,9 +107,7 @@ public class Map6 {
     }
 
     /**
-     * Makes the Finish tile
-     * 
-     * @return - returns the object for collision checking
+     * @return the object for collision checking
      */
     public Finish makeFinish() {
         this.finish = new Finish(this.oneTile * 2, this.oneTile * 1);
@@ -122,6 +120,4 @@ public class Map6 {
         }
         return Map6.instance;
     }
-
-    // TODO nahodny vyber medzi nimi, dokumentacia
 }

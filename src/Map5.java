@@ -63,12 +63,12 @@ public class Map5 {
 
     public ArrayList<Obstacle> makeObstacles() {
         this.obstacles = new ArrayList<>();
-        // hranice mapy vlavo a vpravo
+        // Left and right boundaries
         for (int i = 0; i < 20; i++) {
             this.obstacles.add(new Obstacle(this.oneTile * -1, this.oneTile * i));
             this.obstacles.add(new Obstacle(this.oneTile * 30, this.oneTile * i));
         }
-        // hranica mapy dole
+        // Bottom boundary
         for (int i = 0; i < 30; i++) {
             this.obstacles.add(new Obstacle(this.oneTile * i, this.oneTile * 20));
         }
@@ -128,6 +128,4 @@ public class Map5 {
         }
         return Map5.instance;
     }
-
-    // TODO nahodny vyber medzi nimi, dokumentacia
 }

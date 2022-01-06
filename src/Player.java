@@ -44,12 +44,14 @@ public class Player {
         this.xSpeed++;
     }
 
+    /**
+     * Allows the player to jump only if touching goound
+     */
     public void moveUp() {
-        // Hrac vyskoci len vtedy ak je na plosine
         this.hitbox.y++;
         for (Wall wall : GamePanel.getInstance().getWalls()) {
             if (this.hitbox.intersects(wall.getHitbox())) {
-                this.ySpeed = -8.55;
+                this.ySpeed = -8.55; // Jump height, this value feels the best
             }
         }
         this.hitbox.y--;
@@ -60,31 +62,36 @@ public class Player {
         this.xSpeed--;
     }
 
+    /**
+     * Correctly sets all movement rules and physics
+     */
     public void setMovementRules() {
 
-        // osetrenie "klzania hraca"
+        // Fix for player "sliding" if not holding move key
         if ((this.xSpeed < 0 && this.xSpeed > -0.75) || (this.xSpeed > 0 && this.xSpeed < 0.75)) {
             this.xSpeed = 0;
         }
 
-        // nastavenie max rychlosti
+        // Sets the max speed
         if (this.xSpeed > 7) {
             this.xSpeed = 7;
         }
 
-        // nastavenie max rychlosti na opacnu stranu
+        // Sets the max speed the other way
         if (this.xSpeed < -7) {
             this.xSpeed = -7;
         }
 
+        // Acceleration
         this.xSpeed *= 0.9;
 
-        // gravitacia
+        // Gravity
         this.ySpeed += 0.4;
 
         boolean hasCollided = false;
 
-        // Horizontalna kolizia
+        // Checks for horizontal collisions
+        // inspired by RedFlyer Coding at youtube.com
         this.hitbox.x += this.xSpeed;
         for (Wall wall : GamePanel.getInstance().getWalls()) {
             if (this.hitbox.intersects(wall.getHitbox())) {
@@ -108,7 +115,8 @@ public class Player {
             this.win = true;
         }
 
-        // Vertikalna kolizia
+        // Checks for vertical collisions
+        // inspired by RedFlyer Coding at youtube.com
         this.hitbox.y += this.ySpeed;
         for (Wall wall : GamePanel.getInstance().getWalls()) {
             if (this.hitbox.intersects(wall.getHitbox())) {
