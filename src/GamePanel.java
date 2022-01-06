@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-//import java.util.Random;
+import java.util.Random;
 import java.awt.Color;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements Runnable {
     private Thread gameThread;
     private KeyChecker keyChecker;
     private Finish finish;
-    // private Random generator;
+    private Random generator;
     private BufferedImage backgroundPicture;
 
     private int mapNumber;
@@ -35,10 +35,8 @@ public class GamePanel extends JPanel implements Runnable {
     private ArrayList<Obstacle> obstacles;
 
     private GamePanel() {
-        this.walls = Map3.getInstance().makeTerrain();
-        this.obstacles = Map3.getInstance().makeObstacles();
         this.keyChecker = new KeyChecker();
-        // this.generator = new Random();
+        this.generator = new Random();
         try {
             this.backgroundPicture = ImageIO.read(new File("gfx/bg.png"));
         } catch (IOException ex) {
@@ -46,8 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
                     JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
-        // this.mapNumber = generator.nextInt(6 - 1) + 1;
-        this.mapNumber = 1;
+        this.mapNumber = generator.nextInt(6 - 1) + 1;
         this.reset(this.mapNumber);
         this.setPreferredSize(new Dimension(this.screenWidth, this.screenHeight));
         this.setBackground(Color.WHITE);
@@ -71,8 +68,12 @@ public class GamePanel extends JPanel implements Runnable {
     public void reset(int mapNumber) {
         Player.getInstance().setXSpeed(0);
         Player.getInstance().setYSpeed(0);
-        this.walls.clear();
-        this.obstacles.clear();
+        if (this.walls != null) {
+            this.walls.clear();
+        }
+        if (this.obstacles != null) {
+            this.obstacles.clear();
+        }
         switch (mapNumber) {
             case 1: {
                 Player.getInstance().setX(TILESIZE);
@@ -129,8 +130,9 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void hasWon() {
-        JOptionPane.showMessageDialog(null, "Congratulations!\nOnto the next level...");
-        reset(this.mapNumber++);
+        JOptionPane.showMessageDialog(null, "Congratulations!\nYou won!");
+        System.exit(0);
+        ;
     }
 
     public ArrayList<Wall> getWalls() {

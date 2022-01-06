@@ -154,4 +154,5 @@ public class Player {
     public boolean hasWon() {
         return this.win;
     }
+
 }
