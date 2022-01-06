@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+/**
+ * @author Adam Virostek
+ * @version 1.0
+ */
 public class Map6 {
 
     private static Map6 instance = null;
@@ -15,6 +19,11 @@ public class Map6 {
         this.oneTile = GamePanel.TILESIZE;
     }
 
+    /**
+     * Essentialy builds all the platforms to walk on
+     * 
+     * @return - returns arraylist for collision checking
+     */
     public ArrayList<Wall> makeTerrain() {
         this.terrain = new ArrayList<>();
 
@@ -69,6 +78,11 @@ public class Map6 {
         return this.terrain;
     }
 
+    /**
+     * Essentialy builds all the obstacles to steer away from
+     * 
+     * @return - returns arraylist for collision checking
+     */
     public ArrayList<Obstacle> makeObstacles() {
         this.obstacles = new ArrayList<>();
         // hranice mapy vlavo a vpravo
@@ -92,6 +106,11 @@ public class Map6 {
         return this.obstacles;
     }
 
+    /**
+     * Makes the Finish tile
+     * 
+     * @return - returns the object for collision checking
+     */
     public Finish makeFinish() {
         this.finish = new Finish(this.oneTile * 2, this.oneTile * 1);
         return this.finish;

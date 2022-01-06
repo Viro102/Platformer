@@ -2,6 +2,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+/**
+ * @author Adam Virostek
+ * @version 1.0
+ */
 public class Player {
     private static Player instance = null;
 

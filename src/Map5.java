@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+/**
+ * @author Adam Virostek
+ * @version 1.0
+ */
 public class Map5 {
 
     private static Map5 instance = null;

@@ -18,19 +18,19 @@ public class KeyChecker implements KeyListener {
 
         if (code == KeyEvent.VK_D) {
             this.rightKey = true;
-            System.out.println("moving right");
+            // System.out.println("moving right");
         }
         if (code == KeyEvent.VK_A) {
             this.leftKey = true;
-            System.out.println("moving left");
+            // System.out.println("moving left");
         }
         if (code == KeyEvent.VK_W) {
             this.upKey = true;
-            System.out.println("moving up");
+            // System.out.println("moving up");
         }
         if (code == KeyEvent.VK_R) {
             this.resetKey = true;
-            System.out.println("resetting to start...");
+            // System.out.println("resetting to start...");
         }
 
     }
@@ -54,6 +54,11 @@ public class KeyChecker implements KeyListener {
 
     }
 
+    /**
+     * Allocates the corresponding variable to a char for easier usage
+     * 
+     * @return - returns the pressed key
+     */
     public char getInput() {
         if (this.rightKey) {
             return 'd';

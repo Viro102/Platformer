@@ -10,6 +10,12 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.awt.Color;
 
+/**
+ * The main panel where the game runs
+ * 
+ * @author Adam Virostek
+ * @version 1.0
+ */
 public class GamePanel extends JPanel implements Runnable {
 
     private static GamePanel panelInstance = null;
@@ -63,11 +69,21 @@ public class GamePanel extends JPanel implements Runnable {
         return GamePanel.panelInstance;
     }
 
+    /**
+     * Essentialy starts the program,
+     * so we can render and update correctly
+     */
     public void startGameThread() {
         this.gameThread = new Thread(this);
         this.gameThread.start();
     }
 
+    /**
+     * Method used for building and resetting the game world,
+     * it resets the player position to default and clears all terrain
+     * 
+     * @param mapNumber - is used to specify which map we want to build
+     */
     public void reset(int mapNumber) {
         Player.getInstance().setXSpeed(0);
         Player.getInstance().setYSpeed(0);
@@ -138,6 +154,7 @@ public class GamePanel extends JPanel implements Runnable {
         ;
     }
 
+    // getters
     public ArrayList<Wall> getWalls() {
         return this.walls;
     }
@@ -153,43 +170,37 @@ public class GamePanel extends JPanel implements Runnable {
     public int getMapNumber() {
         return this.mapNumber;
     }
+    // end of getters
 
-    // Toto je hlavny game loop pouzivam delta sposob vykreslovania
+    // Main game loop ensures we run at 60 fps
     @Override
     public void run() {
         double drawInterval = 1000000000 / this.fps;
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
-        long timer = 0;
-        int drawCount = 0;
 
         while (this.gameThread != null) {
 
             currentTime = System.nanoTime();
 
             delta += (currentTime - lastTime) / drawInterval;
-            timer += (currentTime - lastTime); // timer pouzivam na FPS zobrazenie
             lastTime = currentTime;
 
             if (delta > 1) {
                 this.update();
                 repaint();
                 delta--;
-                drawCount++; // pocet snimkov za sekundu
-            }
-
-            if (timer >= 1000000000) {
-                System.out.println("FPS: " + drawCount);
-                drawCount = 0;
-                timer = 0;
             }
 
             // System.out.println("the game has been running for: " + currentTime + " sec");
         }
     }
 
-    // 1. aktualizuje hracovu poziciu
+    /**
+     * Updates the whole JPanel 60 times per second
+     * 
+     */
     public void update() {
         Player.getInstance().setMovementRules();
 
@@ -214,7 +225,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    // 2. vykresluje prostredie (renderuje)
+    // Draws the environment (renders)
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(backgroundPicture, 0, 0, null);

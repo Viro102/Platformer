@@ -2,6 +2,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+/**
+ * @author Adam Virostek
+ * @version 1.0
+ */
 public class Wall {
 
     private int x;
@@ -15,6 +19,11 @@ public class Wall {
         this.hitBox = new Rectangle(this.x, this.y, 32, 32);
     }
 
+    /**
+     * Draws the corresponding shape
+     * 
+     * @param g - needed for graphics component
+     */
     public void draw(Graphics g) {
         g.setColor(Color.BLACK);
         g.fillRect(this.x, this.y, 32, 32);

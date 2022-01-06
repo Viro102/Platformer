@@ -1,5 +1,9 @@
 import javax.swing.JOptionPane;
 
+/**
+ * @author Adam Virostek
+ * @version 1.0
+ */
 public class Main {
     public static void main(String[] args) throws Exception {
         String info = "Hello and Welcome to my first Java Game, hope you enjoy! :D\n"
