@@ -37,13 +37,16 @@ public class GamePanel extends JPanel implements Runnable {
     private GamePanel() {
         this.keyChecker = new KeyChecker();
         this.generator = new Random();
+
         try {
             this.backgroundPicture = ImageIO.read(new File("gfx/bg.png"));
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Couldn't find the specified image", "Error",
+            JOptionPane.showMessageDialog(null, "Couldn't find the specified image",
+                    "Error",
                     JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
+
         this.mapNumber = generator.nextInt(6 - 1) + 1;
         this.reset(this.mapNumber);
         this.setPreferredSize(new Dimension(this.screenWidth, this.screenHeight));
@@ -126,7 +129,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
-        System.out.println("resetting to start...");
+        // System.out.println("resetting to start...");
     }
 
     public void hasWon() {
@@ -188,6 +191,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     // 1. aktualizuje hracovu poziciu
     public void update() {
+        Player.getInstance().setMovementRules();
+
         if (this.keyChecker.getInput() == 'd') {
             Player.getInstance().moveRight();
         }
@@ -203,8 +208,6 @@ public class GamePanel extends JPanel implements Runnable {
         if (this.keyChecker.getInput() == 'r') {
             this.reset(this.mapNumber);
         }
-
-        Player.getInstance().setMovementRules();
 
         if (Player.getInstance().hasWon()) {
             this.hasWon();
