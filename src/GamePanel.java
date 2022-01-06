@@ -1,8 +1,13 @@
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+//import java.util.Random;
 import java.awt.Color;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -13,12 +18,16 @@ public class GamePanel extends JPanel implements Runnable {
 
     private final int maxScreenCol = 30;
     private final int maxScreenRow = 20;
-    private final int screenWidth = GamePanel.TILESIZE * this.maxScreenCol;
-    private final int screenHeight = GamePanel.TILESIZE * this.maxScreenRow;
+    private final int screenWidth = GamePanel.TILESIZE * this.maxScreenCol; // 960 pixels
+    private final int screenHeight = GamePanel.TILESIZE * this.maxScreenRow; // 640 pixels
 
     private Thread gameThread;
     private KeyChecker keyChecker;
     private Finish finish;
+    // private Random generator;
+    private BufferedImage backgroundPicture;
+
+    private int mapNumber;
 
     private int fps = 60;
 
@@ -26,10 +35,20 @@ public class GamePanel extends JPanel implements Runnable {
     private ArrayList<Obstacle> obstacles;
 
     private GamePanel() {
-        this.walls = Map1.getInstance().makeTerrain();
-        this.obstacles = Map1.getInstance().makeObstacles();
+        this.walls = Map3.getInstance().makeTerrain();
+        this.obstacles = Map3.getInstance().makeObstacles();
         this.keyChecker = new KeyChecker();
-        this.reset();
+        // this.generator = new Random();
+        try {
+            this.backgroundPicture = ImageIO.read(new File("gfx/bg.png"));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Couldn't find the specified image", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+        }
+        // this.mapNumber = generator.nextInt(6 - 1) + 1;
+        this.mapNumber = 1;
+        this.reset(this.mapNumber);
         this.setPreferredSize(new Dimension(this.screenWidth, this.screenHeight));
         this.setBackground(Color.WHITE);
         this.addKeyListener(this.keyChecker);
@@ -49,22 +68,69 @@ public class GamePanel extends JPanel implements Runnable {
         this.gameThread.start();
     }
 
-    public void reset() {
-        Player.getInstance().setX(0);
-        Player.getInstance().setY(0);
+    public void reset(int mapNumber) {
         Player.getInstance().setXSpeed(0);
         Player.getInstance().setYSpeed(0);
         this.walls.clear();
         this.obstacles.clear();
-        this.walls = Map1.getInstance().makeTerrain();
-        this.obstacles = Map1.getInstance().makeObstacles();
-        this.finish = Map1.getInstance().makeFinish();
+        switch (mapNumber) {
+            case 1: {
+                Player.getInstance().setX(TILESIZE);
+                Player.getInstance().setY(TILESIZE * 13);
+                this.walls = Map1.getInstance().makeTerrain();
+                this.obstacles = Map1.getInstance().makeObstacles();
+                this.finish = Map1.getInstance().makeFinish();
+                break;
+            }
+            case 2: {
+                Player.getInstance().setX(TILESIZE * 2);
+                Player.getInstance().setY(TILESIZE * 11);
+                this.walls = Map2.getInstance().makeTerrain();
+                this.obstacles = Map2.getInstance().makeObstacles();
+                this.finish = Map2.getInstance().makeFinish();
+                break;
+
+            }
+            case 3: {
+                Player.getInstance().setX(TILESIZE);
+                Player.getInstance().setY(TILESIZE * 3);
+                this.walls = Map3.getInstance().makeTerrain();
+                this.obstacles = Map3.getInstance().makeObstacles();
+                this.finish = Map3.getInstance().makeFinish();
+                break;
+            }
+            case 4: {
+                Player.getInstance().setX(TILESIZE * 11);
+                Player.getInstance().setY(TILESIZE * 15);
+                this.walls = Map4.getInstance().makeTerrain();
+                this.obstacles = Map4.getInstance().makeObstacles();
+                this.finish = Map4.getInstance().makeFinish();
+                break;
+            }
+            case 5: {
+                Player.getInstance().setX(TILESIZE * 1);
+                Player.getInstance().setY(TILESIZE * 2);
+                this.walls = Map5.getInstance().makeTerrain();
+                this.obstacles = Map5.getInstance().makeObstacles();
+                this.finish = Map5.getInstance().makeFinish();
+                break;
+            }
+            case 6: {
+                Player.getInstance().setX(TILESIZE * 26);
+                Player.getInstance().setY(TILESIZE * 0);
+                this.walls = Map6.getInstance().makeTerrain();
+                this.obstacles = Map6.getInstance().makeObstacles();
+                this.finish = Map6.getInstance().makeFinish();
+                break;
+            }
+        }
+
         System.out.println("resetting to start...");
     }
 
     public void hasWon() {
-        JOptionPane.showMessageDialog(null, "Congratulations!\nYou won!");
-        System.exit(0);
+        JOptionPane.showMessageDialog(null, "Congratulations!\nOnto the next level...");
+        reset(this.mapNumber++);
     }
 
     public ArrayList<Wall> getWalls() {
@@ -77,6 +143,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public Finish getFinish() {
         return this.finish;
+    }
+
+    public int getMapNumber() {
+        return this.mapNumber;
     }
 
     // Toto je hlavny game loop pouzivam delta sposob vykreslovania
@@ -129,10 +199,10 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         if (this.keyChecker.getInput() == 'r') {
-            this.reset();
+            this.reset(this.mapNumber);
         }
 
-        Player.getInstance().set();
+        Player.getInstance().setMovementRules();
 
         if (Player.getInstance().hasWon()) {
             this.hasWon();
@@ -142,6 +212,7 @@ public class GamePanel extends JPanel implements Runnable {
     // 2. vykresluje prostredie (renderuje)
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        g.drawImage(backgroundPicture, 0, 0, null);
         Player.getInstance().draw(g);
         for (Wall wall : this.walls) {
             wall.draw(g);

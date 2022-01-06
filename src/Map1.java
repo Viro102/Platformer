@@ -9,20 +9,47 @@ public class Map1 {
 
     private Finish finish;
 
+    private int oneTile;
+
     private Map1() {
+        this.oneTile = GamePanel.TILESIZE;
     }
 
     public ArrayList<Wall> makeTerrain() {
         this.terrain = new ArrayList<>();
-        for (int i = 0; i < 25; i++) {
-            this.terrain.add(new Wall(0 + (GamePanel.TILESIZE * i), GamePanel.TILESIZE * 5));
+        for (int i = 0; i < 6; i++) {
+            this.terrain.add(new Wall(this.oneTile * i, this.oneTile * 16));
         }
 
-        this.terrain.add(new Wall(GamePanel.TILESIZE * 6, GamePanel.TILESIZE * 3));
-        this.terrain.add(new Wall(GamePanel.TILESIZE * 6, GamePanel.TILESIZE * 4));
-        this.terrain.add(new Wall(GamePanel.TILESIZE * 12, GamePanel.TILESIZE * 3));
-        this.terrain.add(new Wall(GamePanel.TILESIZE * 12, GamePanel.TILESIZE * 4));
-        this.terrain.add(new Wall(GamePanel.TILESIZE * 12, GamePanel.TILESIZE * 2));
+        for (int i = 23; i < 30; i++) {
+            this.terrain.add(new Wall(this.oneTile * i, this.oneTile * 6));
+        }
+        for (int i = 22; i < 30; i++) {
+            this.terrain.add(new Wall(this.oneTile * i, this.oneTile * 7));
+        }
+
+        for (int i = 7; i < 10; i++) {
+            this.terrain.add(new Wall(this.oneTile * i, this.oneTile * 13));
+        }
+
+        for (int i = 13; i < 16; i++) {
+            this.terrain.add(new Wall(this.oneTile * i, this.oneTile * 13));
+        }
+
+        for (int i = 18; i < 21; i++) {
+            this.terrain.add(new Wall(this.oneTile * i, this.oneTile * 10));
+        }
+
+        this.terrain.add(new Wall(this.oneTile * 24, this.oneTile * 5));
+        this.terrain.add(new Wall(this.oneTile * 24, this.oneTile * 4));
+
+        this.terrain.add(new Wall(this.oneTile * 28, this.oneTile * 5));
+        this.terrain.add(new Wall(this.oneTile * 28, this.oneTile * 4));
+        this.terrain.add(new Wall(this.oneTile * 28, this.oneTile * 3));
+
+        this.terrain.add(new Wall(this.oneTile * 29, this.oneTile * 5));
+        this.terrain.add(new Wall(this.oneTile * 29, this.oneTile * 4));
+        this.terrain.add(new Wall(this.oneTile * 29, this.oneTile * 3));
 
         return this.terrain;
     }
@@ -31,25 +58,23 @@ public class Map1 {
         this.obstacles = new ArrayList<>();
         // hranice mapy vlavo a vpravo
         for (int i = 0; i < 20; i++) {
-            this.obstacles.add(new Obstacle(GamePanel.TILESIZE * -1, GamePanel.TILESIZE * i));
-            this.obstacles.add(new Obstacle(GamePanel.TILESIZE * 30, GamePanel.TILESIZE * i));
+            this.obstacles.add(new Obstacle(this.oneTile * -1, this.oneTile * i));
+            this.obstacles.add(new Obstacle(this.oneTile * 30, this.oneTile * i));
         }
         // hranica mapy dole
         for (int i = 0; i < 30; i++) {
-            this.obstacles.add(new Obstacle(GamePanel.TILESIZE * i, GamePanel.TILESIZE * 20));
+            this.obstacles.add(new Obstacle(this.oneTile * i, this.oneTile * 20));
         }
 
-        this.obstacles.add(new Obstacle(GamePanel.TILESIZE * 7, GamePanel.TILESIZE * 4));
-        this.obstacles.add(new Obstacle(GamePanel.TILESIZE * 8, GamePanel.TILESIZE * 4));
-        this.obstacles.add(new Obstacle(GamePanel.TILESIZE * 9, GamePanel.TILESIZE * 4));
-        this.obstacles.add(new Obstacle(GamePanel.TILESIZE * 10, GamePanel.TILESIZE * 4));
-        this.obstacles.add(new Obstacle(GamePanel.TILESIZE * 11, GamePanel.TILESIZE * 4));
+        this.obstacles.add(new Obstacle(this.oneTile * 26, this.oneTile * 5));
+        this.obstacles.add(new Obstacle(this.oneTile * 27, this.oneTile * 5));
+        this.obstacles.add(new Obstacle(this.oneTile * 25, this.oneTile * 5));
 
         return this.obstacles;
     }
 
     public Finish makeFinish() {
-        this.finish = new Finish(GamePanel.TILESIZE * 24, GamePanel.TILESIZE * 4);
+        this.finish = new Finish(this.oneTile * 29, this.oneTile * 2);
         return this.finish;
     }
 
@@ -59,4 +84,6 @@ public class Map1 {
         }
         return Map1.instance;
     }
+
+    // TODO nahodny vyber medzi nimi, dokumentacia
 }

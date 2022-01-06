@@ -2,9 +2,14 @@ import javax.swing.JOptionPane;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        String info = "Hello and Welcome to my first Java Game, hope you enjoy! :D\n"
+                + "Keybindings:\n"
+                + "A = walk left, D = walk right, W = jump, R = reset back to start\n"
+                + "The goal of this game is to reach the blue tile.\n"
+                + "Beware of red tiles, also you will die if you go outside the map";
         String[] options = { "Start game", "Close game" };
         int n = JOptionPane.showOptionDialog(null,
-                "Keybindings:\n A = walk left, D = walk right, W = jump\nThe goal of this game is to reach the blue tile.\nBeware of red tiles!",
+                info,
                 "Main menu",
                 JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.INFORMATION_MESSAGE, null, options, options[1]);

@@ -25,7 +25,7 @@ public class Player {
 
     public static Player getInstance() {
         if (Player.instance == null) {
-            Player.instance = new Player(32, 96, 32, 64);
+            Player.instance = new Player(0, 0, 32, 64);
         }
 
         return Player.instance;
@@ -45,7 +45,7 @@ public class Player {
         this.hitbox.y++;
         for (Wall wall : GamePanel.getInstance().getWalls()) {
             if (this.hitbox.intersects(wall.getHitbox())) {
-                this.ySpeed = -8;
+                this.ySpeed = -8.55;
             }
         }
         this.hitbox.y--;
@@ -56,7 +56,7 @@ public class Player {
         this.xSpeed--;
     }
 
-    public void set() {
+    public void setMovementRules() {
 
         // osetrenie "klzania hraca"
         if ((this.xSpeed < 0 && this.xSpeed > -0.75) || (this.xSpeed > 0 && this.xSpeed < 0.75)) {
@@ -125,7 +125,7 @@ public class Player {
         }
 
         if (hasCollided) {
-            GamePanel.getInstance().reset();
+            GamePanel.getInstance().reset(GamePanel.getInstance().getMapNumber());
         }
 
         this.x += this.xSpeed;
