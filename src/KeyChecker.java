@@ -22,7 +22,7 @@ public class KeyChecker implements KeyListener {
 
         if (code == KeyEvent.VK_D) {
             this.rightKey = true;
-            // System.out.println("moving right");
+            // System.out.println("moving right"); used for debug
         }
         if (code == KeyEvent.VK_A) {
             this.leftKey = true;
@@ -61,7 +61,7 @@ public class KeyChecker implements KeyListener {
     /**
      * Allocates the corresponding variable to a char for easier usage
      * 
-     * @return - returns the pressed key
+     * @return the pressed key in form of char
      */
     public char getInput() {
         if (this.rightKey) {

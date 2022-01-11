@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        String info = "Hello and Welcome to my first Java Game, hope you enjoy! :D\n"
+        String info = "Hello and welcome to my first java game, hope you enjoy! :D\n"
                 + "Keybindings:\n"
                 + "A = walk left, D = walk right, W = jump, R = reset back to start\n"
                 + "The goal of this game is to reach the blue tile.\n"
