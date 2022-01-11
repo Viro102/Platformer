@@ -54,7 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
             System.exit(1);
         }
 
-        this.mapNumber = this.generator.nextInt(6 - 1) + 1;
+        this.mapNumber = this.generator.nextInt(6 - 1) + 1; // 1's are there to generate int inbetween 1 and 6
         this.reset(this.mapNumber);
         this.setPreferredSize(new Dimension(this.screenWidth, this.screenHeight));
         this.setBackground(Color.WHITE);
@@ -146,7 +146,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
-        // System.out.println("resetting to start...");
+        // System.out.println("resetting to start..."); used for debug
     }
 
     public void hasWon() {
@@ -172,7 +172,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
     // end of getters
 
-    // Main game loop ensures we run at 60 fps
+    // Main game loop, ensures we run at 60 fps
     @Override
     public void run() {
         double drawInterval = 1000000000 / this.fps;

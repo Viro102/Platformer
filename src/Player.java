@@ -51,7 +51,7 @@ public class Player {
         this.hitbox.y++;
         for (Wall wall : GamePanel.getInstance().getWalls()) {
             if (this.hitbox.intersects(wall.getHitbox())) {
-                this.ySpeed = -8.55; // Jump height, this value feels the best
+                this.ySpeed = -8.55; // Jump height, this value feels adequate
             }
         }
         this.hitbox.y--;
