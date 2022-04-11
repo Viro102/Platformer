@@ -1,9 +1,7 @@
 ## My first 2D game in Java
 
 This is my university project, I am a total beginner. So don't expect Mario level platforming experience.
-But it was a great learning experience. It took a lot of sweat and tears.
-Some code is copied from the net but I modified it. So it wasn't just copy and paste.
-I tried to understand the code which I copied.
+But it was a great learning experience.
 
 ## You can play the game if you head to releases
 
