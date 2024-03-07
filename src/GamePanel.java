@@ -46,7 +46,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.generator = new Random();
 
         try {
-            this.backgroundPicture = ImageIO.read(new File("gfx/bg.png"));
+            this.backgroundPicture = ImageIO.read(new File("assets/bg.png"));
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Couldn't find the specified image",
                     "Error",
